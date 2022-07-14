@@ -1,12 +1,19 @@
 package com.example.sunlinhackathon2022.account
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import com.example.sunlinhackathon2022.IntroActivity
+import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.ActivitySignUpBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -14,6 +21,7 @@ class SignUpActivity : AppCompatActivity() {
     var email = false
     var passwordLength = false
     var passwordCoincide = false
+    lateinit var retrofitClass: RetrofitClass
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -23,12 +31,24 @@ class SignUpActivity : AppCompatActivity() {
         edTextCheck(binding.passwordEdittext, "passwordCoincide")
 
         binding.signButton.setOnClickListener {
-            if(informationCheck()){
-                binding.emailEdittext.text
-                binding.passwordEdittext.text
-                binding.nameEdittext.text
-            }else{
-                Toast.makeText(this,"형식을 확인해주세요",Toast.LENGTH_LONG).show()
+            if (informationCheck()) {
+                val email = binding.emailEdittext.text.toString()
+                val password = binding.passwordEdittext.text.toString()
+                val name = binding.nameEdittext.text.toString()
+                val call = retrofitClass.getApiService().getUser(name, email, password)
+                call.enqueue(object : Callback<SignUpData> {
+                    override fun onResponse(call: Call<SignUpData>, response: Response<SignUpData>) {
+                       var intent=Intent(this@SignUpActivity,IntroActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    override fun onFailure(call: Call<SignUpData>, t: Throwable) {
+                        Log.d("실패","실패")
+                    }
+
+                })
+            } else {
+                Toast.makeText(this, "형식을 확인해주세요", Toast.LENGTH_LONG).show()
             }
 
 
@@ -56,19 +76,25 @@ class SignUpActivity : AppCompatActivity() {
                 when (type) {
                     "emil" -> {
                         email = emailCheck(binding.emailEdittext.text.toString())
-                        if(!email) binding.emailTextLayout.error="이메일 형식을 확인해주세요"
-                        else binding.emailTextLayout.isErrorEnabled=false
+                        if (!email) binding.emailTextLayout.error = "이메일 형식을 확인해주세요"
+                        else binding.emailTextLayout.isErrorEnabled = false
                     }
 
                     "passwordLength" -> {
-                        passwordLength = passwordLengthCheck(binding.passwordEdittext.text.toString())
-                        if(!passwordLength) binding.passwordEdittext.error="비밀번호의 길이를 7자 이상으로 설정해주세요"
-                        else binding.passwordTextLayout.isErrorEnabled=false
+                        passwordLength =
+                            passwordLengthCheck(binding.passwordEdittext.text.toString())
+                        if (!passwordLength) binding.passwordEdittext.error =
+                            "비밀번호의 길이를 7자 이상으로 설정해주세요"
+                        else binding.passwordTextLayout.isErrorEnabled = false
                     }
                     "passwordCoincide" -> {
-                        passwordCoincide = passwordCheck(binding.passwordEdittext.text.toString(), binding.passwordCheckEdittext.text.toString())
-                        if(!passwordCoincide) binding.passwordCheckTextLayout.error="비밀번호가 일치하지않습니다"
-                        else binding.passwordCheckTextLayout.isErrorEnabled=false
+                        passwordCoincide = passwordCheck(
+                            binding.passwordEdittext.text.toString(),
+                            binding.passwordCheckEdittext.text.toString()
+                        )
+                        if (!passwordCoincide) binding.passwordCheckTextLayout.error =
+                            "비밀번호가 일치하지않습니다"
+                        else binding.passwordCheckTextLayout.isErrorEnabled = false
                     }
                 }
 
@@ -77,6 +103,8 @@ class SignUpActivity : AppCompatActivity() {
         })
 
     }
-    private fun informationCheck()=email&&passwordLength&&passwordCoincide&&binding.nameEdittext.text.toString().length>1
+
+    private fun informationCheck() =
+        email && passwordLength && passwordCoincide && binding.nameEdittext.text.toString().length > 1
 
 }
