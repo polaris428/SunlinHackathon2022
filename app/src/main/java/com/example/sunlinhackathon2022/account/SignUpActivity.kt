@@ -36,26 +36,31 @@ class SignUpActivity : AppCompatActivity() {
                 val email = binding.emailEdittext.text.toString()
                 val password = binding.passwordEdittext.text.toString()
                 val name = binding.nameEdittext.text.toString()
-                val newUserData=NewUserData(name,email,password)
+                val newUserData = NewUserData(name, email, password)
 
 
-
-                val call = RetrofitClass.getApiService().getUser(newUserData)
+                val call = RetrofitClass.getApiService().setUser(newUserData)
                 call.enqueue(object : Callback<SignUpData> {
-                    override fun onResponse(call: Call<SignUpData>, response: Response<SignUpData>) {
-                       val intent=Intent(this@SignUpActivity,IntroActivity::class.java)
+                    override fun onResponse(
+                        call: Call<SignUpData>,
+                        response: Response<SignUpData>
+                    ) {
+                        val intent = Intent(this@SignUpActivity, IntroActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
 
                     override fun onFailure(call: Call<SignUpData>, t: Throwable) {
-                        Log.d("실패","실패")
+                        Log.d("실패", "실패")
                     }
 
                 })
             } else {
                 Toast.makeText(this, "형식을 확인해주세요", Toast.LENGTH_LONG).show()
-                Log.d(binding.passwordEdittext.text.toString(),binding.passwordCheckEdittext.text.toString())
+                Log.d(
+                    binding.passwordEdittext.text.toString(),
+                    binding.passwordCheckEdittext.text.toString()
+                )
             }
 
 
@@ -99,7 +104,8 @@ class SignUpActivity : AppCompatActivity() {
                             binding.passwordEdittext.text.toString(),
                             binding.passwordCheckEdittext.text.toString()
                         )
-                        if (!passwordCoincide) binding.passwordCheckTextLayout.error = "비밀번호가 일치하지않습니다"
+                        if (!passwordCoincide) binding.passwordCheckTextLayout.error =
+                            "비밀번호가 일치하지않습니다"
                         else binding.passwordCheckTextLayout.isErrorEnabled = false
                     }
                 }

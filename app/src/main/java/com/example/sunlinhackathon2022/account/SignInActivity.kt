@@ -1,37 +1,65 @@
 package com.example.sunlinhackathon2022.account
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import com.example.sunlinhackathon2022.IntroActivity
 import com.example.sunlinhackathon2022.R
+import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.ActivityMainBinding
 import com.example.sunlinhackathon2022.databinding.ActivitySignInBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class SignInActivity : AppCompatActivity() {
     var email = false
     var passwordLength = false
     var passwordCoincide = false
-    lateinit var binding:ActivitySignInBinding
+    lateinit var binding: ActivitySignInBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivitySignInBinding.inflate(layoutInflater)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        edTextCheck(binding.emailEdittext,"emil")
-        edTextCheck(binding.passwordEdittext,"passwordLength")
-        binding.loginButton.setOnClickListener {
-            if(informationCheck()){
+        edTextCheck(binding.emailEdittext, "emil")
+        edTextCheck(binding.passwordEdittext, "passwordLength")
 
-            }else{
-                Toast.makeText(this,"형식을 확인해주세요", Toast.LENGTH_LONG).show()
+        binding.loginButton.setOnClickListener {
+            if (informationCheck()) {
+                val email = binding.emailEdittext.text.toString()
+                val password = binding.passwordEdittext.text.toString()
+                val logInData = LogInData(email, password)
+
+                val call = RetrofitClass.getApiService().getUser(logInData)
+                call.enqueue(object : Callback<SignInData> {
+                    override fun onResponse(
+                        call: Call<SignInData>,
+                        response: Response<SignInData>
+                    ) {
+                        val intent = Intent(this@SignInActivity, IntroActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+
+                    override fun onFailure(call: Call<SignInData>, t: Throwable) {
+                        Log.d("실패", "실패")
+                    }
+
+                })
+            } else {
+                Toast.makeText(this, "형식을 확인해주세요", Toast.LENGTH_LONG).show()
             }
         }
 
 
-
     }
+
     private fun emailCheck(email: String) = email.contains("@")
 
     private fun passwordLengthCheck(password: String) = password.length >= 7
@@ -49,14 +77,16 @@ class SignInActivity : AppCompatActivity() {
                 when (type) {
                     "emil" -> {
                         email = emailCheck(binding.emailEdittext.text.toString())
-                        if(!email) binding.emailTextLayout.error="이메일 형식을 확인해주세요"
-                        else binding.emailTextLayout.isErrorEnabled=false
+                        if (!email) binding.emailTextLayout.error = "이메일 형식을 확인해주세요"
+                        else binding.emailTextLayout.isErrorEnabled = false
                     }
 
                     "passwordLength" -> {
-                        passwordLength = passwordLengthCheck(binding.passwordEdittext.text.toString())
-                        if(!passwordLength) binding.passwordEdittext.error="비밀번호의 길이를 7자 이상으로 설정해주세요"
-                        else binding.passwordTextLayout.isErrorEnabled=false
+                        passwordLength =
+                            passwordLengthCheck(binding.passwordEdittext.text.toString())
+                        if (!passwordLength) binding.passwordEdittext.error =
+                            "비밀번호의 길이를 7자 이상으로 설정해주세요"
+                        else binding.passwordTextLayout.isErrorEnabled = false
                     }
 
                 }
@@ -66,5 +96,6 @@ class SignInActivity : AppCompatActivity() {
         })
 
     }
-    private fun informationCheck()=email&&passwordLength
+
+    private fun informationCheck() = email && passwordLength
 }
