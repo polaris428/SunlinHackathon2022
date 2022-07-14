@@ -40,6 +40,7 @@ class SignUpActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<SignUpData>, response: Response<SignUpData>) {
                        var intent=Intent(this@SignUpActivity,IntroActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
 
                     override fun onFailure(call: Call<SignUpData>, t: Throwable) {

@@ -1,5 +1,6 @@
 package com.example.sunlinhackathon2022
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -50,6 +51,8 @@ class IntroActivity  : AppIntro() {
 
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
+        var intent=Intent(this,MainActivity::class.java)
+        startActivity(intent)
         // Decide what to do when the user clicks on "Skip"
         finish()
     }
