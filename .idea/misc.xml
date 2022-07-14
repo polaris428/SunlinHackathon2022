@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_sign_in.xml" value="0.2463768115942029" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_sign_in_main.xml" value="0.1609375" />
+        <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_splash.xml" value="0.22826086956521738" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_welcome.xml" value="0.2463768115942029" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/fragment_blank.xml" value="0.22826086956521738" />
