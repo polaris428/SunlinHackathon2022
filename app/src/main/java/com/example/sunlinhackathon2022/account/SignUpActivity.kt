@@ -43,7 +43,7 @@ class SignUpActivity : AppCompatActivity() {
                 val call = RetrofitClass.getApiService().getUser(newUserData)
                 call.enqueue(object : Callback<SignUpData> {
                     override fun onResponse(call: Call<SignUpData>, response: Response<SignUpData>) {
-                       var intent=Intent(this@SignUpActivity,IntroActivity::class.java)
+                       val intent=Intent(this@SignUpActivity,IntroActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
