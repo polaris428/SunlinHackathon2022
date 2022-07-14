@@ -21,7 +21,7 @@ class SignUpActivity : AppCompatActivity() {
     var email = false
     var passwordLength = false
     var passwordCoincide = false
-    lateinit var retrofitClass: RetrofitClass
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -29,13 +29,18 @@ class SignUpActivity : AppCompatActivity() {
         edTextCheck(binding.emailEdittext, "emil")
         edTextCheck(binding.passwordEdittext, "passwordLength")
         edTextCheck(binding.passwordEdittext, "passwordCoincide")
+        edTextCheck(binding.passwordCheckEdittext, "passwordCoincide")
 
         binding.signButton.setOnClickListener {
             if (informationCheck()) {
                 val email = binding.emailEdittext.text.toString()
                 val password = binding.passwordEdittext.text.toString()
                 val name = binding.nameEdittext.text.toString()
-                val call = retrofitClass.getApiService().getUser(name, email, password)
+                val newUserData=NewUserData(name,email,password)
+
+
+
+                val call = RetrofitClass.getApiService().getUser(newUserData)
                 call.enqueue(object : Callback<SignUpData> {
                     override fun onResponse(call: Call<SignUpData>, response: Response<SignUpData>) {
                        var intent=Intent(this@SignUpActivity,IntroActivity::class.java)
@@ -50,6 +55,7 @@ class SignUpActivity : AppCompatActivity() {
                 })
             } else {
                 Toast.makeText(this, "형식을 확인해주세요", Toast.LENGTH_LONG).show()
+                Log.d(binding.passwordEdittext.text.toString(),binding.passwordCheckEdittext.text.toString())
             }
 
 
@@ -93,8 +99,7 @@ class SignUpActivity : AppCompatActivity() {
                             binding.passwordEdittext.text.toString(),
                             binding.passwordCheckEdittext.text.toString()
                         )
-                        if (!passwordCoincide) binding.passwordCheckTextLayout.error =
-                            "비밀번호가 일치하지않습니다"
+                        if (!passwordCoincide) binding.passwordCheckTextLayout.error = "비밀번호가 일치하지않습니다"
                         else binding.passwordCheckTextLayout.isErrorEnabled = false
                     }
                 }
