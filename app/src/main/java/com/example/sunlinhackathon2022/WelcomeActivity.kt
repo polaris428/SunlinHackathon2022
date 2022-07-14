@@ -3,7 +3,7 @@ package com.example.sunlinhackathon2022
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.sunlinhackathon2022.account.SignInUpActivity
+import com.example.sunlinhackathon2022.account.SignUpActivity
 import com.example.sunlinhackathon2022.databinding.ActivityWelcomeBinding
 
 class WelcomeActivity : AppCompatActivity() {
@@ -17,7 +17,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         }
         binding.signUpButton.setOnClickListener {
-            var intent=Intent(this,SignInUpActivity::class.java)
+            var intent=Intent(this,SignUpActivity::class.java)
             startActivity(intent)
         }
 

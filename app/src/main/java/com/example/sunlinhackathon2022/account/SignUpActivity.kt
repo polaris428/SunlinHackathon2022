@@ -6,17 +6,17 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.Toast
-import com.example.sunlinhackathon2022.databinding.ActivitySignInUpBinding
+import com.example.sunlinhackathon2022.databinding.ActivitySignUpBinding
 
 
-class SignInUpActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySignInUpBinding
+class SignUpActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySignUpBinding
     var email = false
     var passwordLength = false
     var passwordCoincide = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignInUpBinding.inflate(layoutInflater)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         edTextCheck(binding.emailEdittext, "emil")
         edTextCheck(binding.passwordEdittext, "passwordLength")
