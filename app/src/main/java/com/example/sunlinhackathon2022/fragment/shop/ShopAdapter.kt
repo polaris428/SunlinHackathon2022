@@ -3,6 +3,7 @@ package com.example.sunlinhackathon2022.fragment.shop
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.sunlinhackathon2022.databinding.ItemShopBinding
 
 class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
@@ -14,6 +15,8 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
             binding.SecondTitle.text=shopData.shopItem[position].name2
             binding.firstTag.text=shopData.shopItem[position].category1
             binding.secondTag.text=shopData.shopItem[position].category2
+            Glide.with(binding.root).load(shopData.shopItem[adapterPosition].photo1).centerCrop().into(binding.firstImage)
+            Glide.with(binding.root).load(shopData.shopItem[adapterPosition].photo2).centerCrop().into(binding.SecondImage)
 
         }
 
