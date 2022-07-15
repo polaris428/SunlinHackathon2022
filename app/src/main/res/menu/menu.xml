@@ -4,13 +4,13 @@
         android:id="@+id/item_fragment1"
         android:enabled="true"
         android:title="홈"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_home"/>
 
     <item
         android:id="@+id/item_fragment2"
         android:enabled="true"
         android:title="프래그먼트"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_book"/>
     <item
 
         android:enabled="false"
@@ -19,12 +19,12 @@
         android:id="@+id/item_fragment3"
         android:enabled="true"
         android:title="프래그먼트3"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_loudspeaker"/>
     <item
         android:id="@+id/item_fragment4"
         android:enabled="true"
         android:title="프래그먼트4"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_shop"/>
 
 
 </menu>
