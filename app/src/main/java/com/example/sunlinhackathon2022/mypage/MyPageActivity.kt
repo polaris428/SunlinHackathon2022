@@ -3,8 +3,11 @@ package com.example.sunlinhackathon2022.mypage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.ActivityMyPageBinding
+import com.example.sunlinhackathon2022.fragment.shop.ShopAdapter
+import com.example.sunlinhackathon2022.fragment.shop.ShopData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +26,14 @@ class MyPageActivity : AppCompatActivity() {
             override fun onResponse(call: Call<BarcodeList>, response: Response<BarcodeList>) {
                 if(response.isSuccessful){
                     Log.d("test",response.body()!!.barcode.toString())
+                    var barcodeAdapter = BarcodeAdapter()
+                    var datas = arrayListOf<BarcodeList>()
+                    response.body()?.let { datas.add(it)}
+                        binding.recyclerView.layoutManager = LinearLayoutManager(this@MyPageActivity)
+
+                    binding.recyclerView.adapter = barcodeAdapter
+                    barcodeAdapter.listData =datas
+                    barcodeAdapter.notifyDataSetChanged()
                 }else{
                     Log.d("tst","sfasd")
                 }
