@@ -76,6 +76,10 @@ class DictionaryFragment : Fragment() {
         * fragment/dictionary 패키지 안에다 해주시면 감사하겠습니다.
         *
         * */
+
+        binding.seadView.visibility=View.GONE
+        binding.lottieView.playAnimation()
+        binding.lottieView.loop(true)
         var illustratedbookAdapter=illustratedbookAdapter()
         binding.recyclerView.layoutManager= LinearLayoutManager(binding.root.context)
         binding.recyclerView.adapter = illustratedbookAdapter
@@ -91,9 +95,13 @@ class DictionaryFragment : Fragment() {
                     Log.d("dogam",idList.toString())
                     if(idList.size>=1){
                         binding.seadView.visibility=View.GONE
+                        illustratedbookAdapter.listData=idList
+                        illustratedbookAdapter.notifyDataSetChanged()
+                    }else{
+                        binding.seadView.visibility=View.VISIBLE
                     }
-                    illustratedbookAdapter.listData=idList
-                    illustratedbookAdapter.notifyDataSetChanged()
+                    binding.lottieView.visibility= View.GONE
+                    binding.lottieView.cancelAnimation()
                 }
             }
 
