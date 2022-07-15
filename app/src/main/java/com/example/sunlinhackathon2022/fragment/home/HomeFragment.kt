@@ -1,10 +1,12 @@
-package com.example.sunlinhackathon2022.fragment
+package com.example.sunlinhackathon2022.fragment.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.sunlinhackathon2022.HomeFragment1
+import com.example.sunlinhackathon2022.HomeFragment2
 import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.databinding.FragmentDictionaryBinding
 import com.example.sunlinhackathon2022.databinding.FragmentHomeBinding
@@ -24,6 +26,7 @@ class HomeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentHomeBinding
+    private lateinit var ViewPagerAdapter: ViewPagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -37,7 +40,19 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding=FragmentHomeBinding.inflate(inflater,container,false)
+        initAdapter()
         return binding.root
+    }
+    private fun initAdapter() {
+        //Adapter 안에 ViewPager2 상에 띄워줄 fragmentList 생성
+        val fragmentList = listOf(HomeFragment1(), HomeFragment2())
+
+        //ViewPagerAdapter 초기화
+        ViewPagerAdapter = ViewPagerAdapter(this)
+        ViewPagerAdapter.fragments.addAll(fragmentList)
+
+        //ViewPager2와 Adapter 연동
+        binding.viewpager.adapter = ViewPagerAdapter
     }
 
     companion object {

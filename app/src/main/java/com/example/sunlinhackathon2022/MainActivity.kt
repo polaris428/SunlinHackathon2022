@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.sunlinhackathon2022.databinding.ActivityMainBinding
 
 import com.example.sunlinhackathon2022.fragment.*
+import com.example.sunlinhackathon2022.fragment.home.HomeFragment
 import com.example.sunlinhackathon2022.fragment.illustratedbook.DictionaryFragment
 import com.example.sunlinhackathon2022.fragment.shop.ShopFragment
 import com.google.zxing.integration.android.IntentIntegrator
