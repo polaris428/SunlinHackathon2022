@@ -1,12 +1,17 @@
-package com.example.sunlinhackathon2022.fragment
+package com.example.sunlinhackathon2022.fragment.shop
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.sunlinhackathon2022.R
+import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.FragmentShopBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,6 +42,19 @@ class ShopFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=FragmentShopBinding.inflate(inflater,container,false)
+
+
+        var call=RetrofitClass.getApiService().getShop()
+        call.enqueue(object :Callback<ShopData>{
+            override fun onResponse(call: Call<ShopData>, response: Response<ShopData>) {
+                Log.d("test",response.body().toString())
+            }
+
+            override fun onFailure(call: Call<ShopData>, t: Throwable) {
+               Log.d("실패","실패")
+            }
+
+        })
         return binding.root
     }
 
