@@ -1,5 +1,6 @@
 package com.example.sunlinhackathon2022
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -12,7 +13,117 @@ class StoryDetailActivity : AppCompatActivity() {
         binding = ActivityStoryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.back.setOnClickListener {
+            finish()
+        }
+        val animalARBaseUrl = "https://arvr.google.com/scene-viewer/web?file=https://storage.googleapis.com/ar-answers-in-search-models/static/"
         val animal = intent.getStringExtra("animal")
+        when (animal) {
+            "tiger" -> {
+                binding.arBtn.setOnClickListener {
+                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+                    ARIntent.putExtra("arUrl",animalARBaseUrl+"Tiger/model.glb")
+                    startActivity(ARIntent)
+                }
+                binding.title.text = "호랑이의 이야기"
+                binding.animalName.text = "호랑이"
+                binding.animalImageView.setImageResource(R.drawable.tiger_story)
+                binding.animalInfo.text = """안녕!
+나는 방글라데시에서 사는 호랑이야.
 
+요즘 고민이 하나 생겼어ㅠ...
+점점 친구 호랑이들이 어디갔는지 안보이더라고.
+근데 내 친구 호랑이들만 그런게 아니더라.
+저 옆에 내 친척 뱅골호랑이는
+10가족밖에 남지 않았데.
+
+나도 곧 사라지는 걸까?"""
+                binding.text2.text = "호랑이를 살리려면?"
+                binding.animalHelp.text = """나를 살리기 위해서는 우선 우리 집을 지켜줘야해.
+우리 집은 숲속에 숨겨져있는데 요즘 인간들이
+침입해서 파괴하고 있어.
+팜유 농장을 세운다나? 
+
+요즘 듣기로는 우리 집을 파괴하지 않고
+만들 수 있는 팜유가 있다고 들었어.
+그 팜유를 주로 사용해준다면 우릴 살릴 수 있어!"""
+            }
+            "wolf"->{
+                binding.arBtn.setOnClickListener {
+                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+                    ARIntent.putExtra("arUrl",animalARBaseUrl+"TimberWolf/model.glb")
+                    startActivity(ARIntent)
+                }
+                binding.title.text = "늑대의 이야기"
+                binding.animalName.text = "늑대"
+                binding.animalImageView.setImageResource(R.drawable.wolf_story)
+                binding.animalInfo.text = """..안녕
+나는 늑대다.
+
+최근 내 반려자.. 아내가 하늘나라로 떠났지...
+먼저 떠난 아내를 위해서라도 남은 아이들은
+지켜내야해.
+
+제발 우리 아이들을 지켜줘, 부탁이다."""
+                binding.text2.text = "늑대를 살리려면?"
+                binding.animalHelp.text = """너희 인간중 사냥꾼이란 직업이 문제다.
+그녀석들은 몰래 우리 서식지로 들어온거같더군.
+그리곤 내 아내를... 잡아갔지.
+
+그녀석들을 너희 세계의 규칙으로 막고 신고를
+해주면 도움이 될 것 같다.
+ """
+            }
+
+            "tortoise"->{
+                binding.arBtn.setOnClickListener {
+                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+                    ARIntent.putExtra("arUrl",animalARBaseUrl+"GreenSeaTurtle/model.glb")
+                    startActivity(ARIntent)
+                }
+                binding.title.text = "바다거북의 이야기"
+                binding.animalName.text = "바다거북"
+                binding.animalImageView.setImageResource(R.drawable.tortoise_story)
+                binding.animalInfo.text = """거북~
+나는 거북이야 바다에서 살고 있지.
+
+요즘 바다에 해엄치면 쓰레기들이 내 앞을 가려서
+놀러가는게 쉽지 않아.
+다른 친구들은 쓰레기들때문에 다친적도 있어.
+
+해엄칠때마다 다치게 될까봐 무서워.."""
+                binding.text2.text = "거북이를 살리려면?"
+                binding.animalHelp.text = """너무 바다에 쓰레기가 많은게 가장 큰 문제야.
+우리가 헤엄치는 바다에 들어오는 쓰레기를 
+줄여주면 좋을거 같아.
+
+너희가 바닷가에 놀러가면 보이는 쓰레기들을 
+주워준다면 도움이 될거같아!
+ """
+            }
+            "panda"->{
+                binding.arBtn.setOnClickListener {
+                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+                    ARIntent.putExtra("arUrl",animalARBaseUrl+"GiantPanda/model.glb")
+                    startActivity(ARIntent)
+                }
+                binding.title.text = "판다의 이야기"
+                binding.animalName.text = "판다"
+                binding.animalImageView.setImageResource(R.drawable.panda_story)
+                binding.animalInfo.text = """안녕?
+나는 대나무를 정말로 좋아하는 대왕판다야
+
+난 중국에 있는 쓰촨성 지역에서 살고 있어.
+
+너희들이 태어나기도 전 아주 옛날에는,
+나는 중국 중남쪽에 많이 살았어. 하지만 지금은 중국 쓰촨성 지역에 대략 1800 마리가 모여살고 있지. 내 친구인 친링판다는 야생에 200마리밖에 없어. 이마저도 중국에서 우리 판다를 잘 관리하고 있어서 이만큼 있는거야."""
+                binding.text2.text = "판다를 살리려면?"
+                binding.animalHelp.text = """우리 판다들이 줄어든 이유는 우리의 서식지를 인간들이 파괴해서야.
+                  
+우리의 수가 늘어나기 위해서는 우리의 집을 너희 인간들이 보호해줘야해.
+그러니까 너희들이 산을 지켜줘야해. 난 네가 할 수 있을꺼라고 생각해!"""
+            }
+
+        }
     }
 }
