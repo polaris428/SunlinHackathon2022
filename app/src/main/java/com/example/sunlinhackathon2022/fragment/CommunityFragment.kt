@@ -1,11 +1,20 @@
 package com.example.sunlinhackathon2022.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+
+import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import com.example.sunlinhackathon2022.R
+import androidx.appcompat.resources.Compatibility.Api21Impl.inflate
+import androidx.core.content.res.ComplexColorCompat.inflate
+import androidx.fragment.app.FragmentContainer
+
+import com.example.sunlinhackathon2022.databinding.ActivityIntroBinding.inflate
+import com.example.sunlinhackathon2022.databinding.FragmentCommunityBinding
+import com.example.sunlinhackathon2022.databinding.FragmentHomeBinding.inflate
+import com.example.sunlinhackathon2022.databinding.FragmentShopBinding
+import com.example.sunlinhackathon2022.databinding.FragmentShopBinding.inflate
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +31,12 @@ class CommunityFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    lateinit var binding: FragmentCommunityBinding
+
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -30,12 +45,13 @@ class CommunityFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_community, container, false)
+        binding=FragmentCommunityBinding.inflate(inflater,container,false)
+        return binding.root
+
+
+
     }
 
     companion object {
