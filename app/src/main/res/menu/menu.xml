@@ -9,7 +9,7 @@
     <item
         android:id="@+id/item_fragment2"
         android:enabled="true"
-        android:title="프래그먼트"
+        android:title="도감"
         android:icon="@drawable/ic_book"/>
     <item
 
@@ -18,12 +18,12 @@
     <item
         android:id="@+id/item_fragment3"
         android:enabled="true"
-        android:title="프래그먼트3"
+        android:title="동물이야기"
         android:icon="@drawable/ic_story"/>
     <item
         android:id="@+id/item_fragment4"
         android:enabled="true"
-        android:title="프래그먼트4"
+        android:title="상점"
         android:icon="@drawable/ic_shop"/>
 
 

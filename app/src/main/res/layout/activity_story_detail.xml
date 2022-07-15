@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="AR로 만나기"
-                    android:backgroundTint="@color/main_color"
+                    android:backgroundTint="@color/purple_700"
                     app:layout_constraintTop_toBottomOf="@id/animalHelp"
                     android:layout_marginTop="40dp"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
