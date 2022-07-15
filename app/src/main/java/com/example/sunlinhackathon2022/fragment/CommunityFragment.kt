@@ -1,5 +1,6 @@
 package com.example.sunlinhackathon2022.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.resources.Compatibility.Api21Impl.inflate
 import androidx.core.content.res.ComplexColorCompat.inflate
 import androidx.fragment.app.FragmentContainer
+import com.example.sunlinhackathon2022.StoryDetailActivity
 
 import com.example.sunlinhackathon2022.databinding.ActivityIntroBinding.inflate
 import com.example.sunlinhackathon2022.databinding.FragmentCommunityBinding
@@ -48,6 +50,27 @@ class CommunityFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding=FragmentCommunityBinding.inflate(inflater,container,false)
+
+        binding.tigerButton.setOnClickListener{
+            val intent = Intent(activity, StoryDetailActivity::class.java)
+            intent.putExtra("animal", "tiger")
+            startActivity(intent)
+        }
+        binding.wolfButton.setOnClickListener{
+            val intent = Intent(activity, StoryDetailActivity::class.java)
+            intent.putExtra("animal", "wolf")
+            startActivity(intent)
+        }
+        binding.tortoiseButton.setOnClickListener{
+            val intent = Intent(activity, StoryDetailActivity::class.java)
+            intent.putExtra("animal", "tortoise")
+            startActivity(intent)
+        }
+        binding.pandaButton.setOnClickListener{
+            val intent = Intent(activity, StoryDetailActivity::class.java)
+            intent.putExtra("animal", "panda")
+            startActivity(intent)
+        }
         return binding.root
 
 
