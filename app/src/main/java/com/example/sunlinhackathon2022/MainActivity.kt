@@ -15,7 +15,7 @@ import com.example.sunlinhackathon2022.fragment.illustratedbook.DictionaryFragme
 import com.example.sunlinhackathon2022.fragment.illustratedbook.ResultData
 import com.example.sunlinhackathon2022.fragment.shop.ShopFragment
 import com.example.sunlinhackathon2022.minigame.EndangeredCountMinigameActivity
-import com.example.sunlinhackathon2022.minigame.TigerTouchMinigameActivity
+import com.example.sunlinhackathon2022.minigame.TurtleTouchActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import retrofit2.Call
 import retrofit2.Callback
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                 val checkList = arrayOf("1","2","3","4","5","6","7","8")
                 val qrAnimalIntent = Intent(this, AnimalDetailActivity::class.java)
                 val qrGameAnimalIntent1 = Intent(this, EndangeredCountMinigameActivity::class.java)
-                val qrGameAnimalIntent2 = Intent(this, TigerTouchMinigameActivity::class.java)
+                val qrGameAnimalIntent2 = Intent(this, TurtleTouchActivity::class.java)
                 //유효 QR 검사
                 if(result.contents !in checkList) {
                     Toast.makeText(this, "유효하지 않은 QR코드입니다", Toast.LENGTH_LONG).show()
