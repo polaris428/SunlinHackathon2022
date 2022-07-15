@@ -14,9 +14,9 @@ import retrofit2.http.POST
 
 interface ApiService {
     @POST("auth/local")
-    fun setUser(@Body newUserData: NewUserData): Call<SignUpData>
+    fun signUp(@Body newUserData: NewUserData): Call<SignUpData>
     @POST("auth/local")
-    fun getUser(@Body logInData: LogInData): Call<SignInData>
+    fun signIn(@Body logInData: LogInData): Call<SignInData>
     @GET("shop")
     fun getShop(): Call<ShopData>
     @POST("barcode")

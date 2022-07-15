@@ -34,25 +34,32 @@ class SignInActivity : AppCompatActivity() {
             var intent=Intent(this@SignInActivity,SignUpActivity::class.java)
             startActivity(intent)
         }
-        binding.signUpButton.setOnClickListener {
+        binding.signInButton.setOnClickListener {
             if (informationCheck()) {
                 val email = binding.emailEdittext.text.toString()
                 val password = binding.passwordEdittext.text.toString()
                 val logInData = LogInData(email, password)
 
-                val call = RetrofitClass.getApiService().getUser(logInData)
+                val call = RetrofitClass.getApiService().signIn(logInData)
                 call.enqueue(object : Callback<SignInData> {
                     override fun onResponse(
                         call: Call<SignInData>,
                         response: Response<SignInData>
                     ) {
-                        var sharedPreferences=getSharedPreferences("account", Activity.MODE_PRIVATE);
-                        var editor=sharedPreferences.edit()
-                        editor.putString("id",email)
-                        editor.apply()
-                        val intent = Intent(this@SignInActivity, IntroActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        if(response.isSuccessful){
+                            val sharedPreferences=getSharedPreferences("account", Activity.MODE_PRIVATE);
+                            val editor=sharedPreferences.edit()
+                            editor.putString("id",email)
+                            editor.putString("token",response.body()!!.token)
+                            editor.apply()
+                            val intent = Intent(this@SignInActivity, IntroActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }else{
+                            Toast.makeText(this@SignInActivity,"아이디 또는 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show()
+
+                        }
+
                     }
 
                     override fun onFailure(call: Call<SignInData>, t: Throwable) {
