@@ -48,6 +48,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                     }
                     .setPositiveButton("확인") { dialog, which ->
                         edit.putInt("point",point-price)
+                        edit.apply()
                         barcode(token,Buy(name,price,photo))
                     }
                     .show()

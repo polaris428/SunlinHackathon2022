@@ -110,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                         ) {
                             if(response.isSuccessful) {
                                 edit.putInt("point",point+10000)
+                                edit.apply()
                                 if(result.contents.toInt() in response.body()!!.dict) { //있다
                                     if(result.contents.toInt() in listOf(4,6,8)) { //게임대상
                                         val rand = (0..1).random()
