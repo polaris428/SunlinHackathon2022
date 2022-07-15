@@ -29,8 +29,11 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
         edTextCheck(binding.emailEdittext, "emil")
         edTextCheck(binding.passwordEdittext, "passwordLength")
-
-        binding.loginButton.setOnClickListener {
+        binding.signUpButton.setOnClickListener {
+            var intent=Intent(this@SignInActivity,SignUpActivity::class.java)
+            startActivity(intent)
+        }
+        binding.signUpButton.setOnClickListener {
             if (informationCheck()) {
                 val email = binding.emailEdittext.text.toString()
                 val password = binding.passwordEdittext.text.toString()
