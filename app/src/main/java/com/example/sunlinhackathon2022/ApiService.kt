@@ -13,7 +13,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("auth/local")
+    @POST("auth/new")
     fun signUp(@Body newUserData: NewUserData): Call<SignUpData>
     @POST("auth/local")
     fun signIn(@Body logInData: LogInData): Call<SignInData>

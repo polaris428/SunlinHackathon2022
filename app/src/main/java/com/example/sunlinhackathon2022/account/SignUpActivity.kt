@@ -47,35 +47,40 @@ class SignUpActivity : AppCompatActivity() {
                         call: Call<SignUpData>,
                         response: Response<SignUpData>
                     ) {
-                        var signInData=LogInData(email,password)
-                       var call2=RetrofitClass.getApiService().signIn(signInData)
-                        call2.enqueue(object :Callback<SignInData>{
+                        if(response.isSuccessful){
+                            var signInData=LogInData(email,password)
+                            var call2=RetrofitClass.getApiService().signIn(signInData)
+                            call2.enqueue(object :Callback<SignInData>{
 
-                            override fun onFailure(call: Call<SignInData>, t: Throwable) {
-                               val intent=Intent(this@SignUpActivity,SignInActivity::class.java)
-                                startActivity(intent)
-                            }
-
-                            override fun onResponse(
-                                call: Call<SignInData>,
-                                response: Response<SignInData>
-                            ) {
-                                if(response.isSuccessful){
-                                    val sharedPreferences=getSharedPreferences("account", Activity.MODE_PRIVATE);
-                                    val editor=sharedPreferences.edit()
-                                    editor.putString("id",email)
-                                    editor.putString("token",response.body()!!.token)
-                                    editor.apply()
-                                    val intent = Intent(this@SignUpActivity, IntroActivity::class.java)
+                                override fun onFailure(call: Call<SignInData>, t: Throwable) {
+                                    val intent=Intent(this@SignUpActivity,SignInActivity::class.java)
                                     startActivity(intent)
-                                    finish()
-                                }else{
-                                    Toast.makeText(this@SignUpActivity,"아이디 또는 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show()
-
                                 }
-                            }
 
-                        })
+                                override fun onResponse(
+                                    call: Call<SignInData>,
+                                    response: Response<SignInData>
+                                ) {
+                                    if(response.isSuccessful){
+                                        val sharedPreferences=getSharedPreferences("account", Activity.MODE_PRIVATE);
+                                        val editor=sharedPreferences.edit()
+                                        editor.putString("id",email)
+                                        editor.putString("token",response.body()!!.token)
+                                        editor.apply()
+                                        val intent = Intent(this@SignUpActivity, IntroActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    }else{
+                                        Toast.makeText(this@SignUpActivity,"아이디 또는 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show()
+
+                                    }
+                                }
+
+                            })
+                        }else{
+                            Log.d("실패","실페")
+                        }
+
                     }
 
                     override fun onFailure(call: Call<SignUpData>, t: Throwable) {
