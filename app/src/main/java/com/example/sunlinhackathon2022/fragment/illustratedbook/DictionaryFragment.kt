@@ -1,10 +1,11 @@
-package com.example.sunlinhackathon2022.fragment
+package com.example.sunlinhackathon2022.fragment.illustratedbook
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.databinding.FragmentCommunityBinding
@@ -52,6 +53,11 @@ class DictionaryFragment : Fragment() {
         * fragment/dictionary 패키지 안에다 해주시면 감사하겠습니다.
         *
         * */
+        var illustratedbookAdapter=illustratedbookAdapter()
+        binding.recyclerView.layoutManager= LinearLayoutManager(binding.root.context)
+        binding.recyclerView.adapter = illustratedbookAdapter
+        //illustratedbookAdapter.listData=  리스트 삽입
+        illustratedbookAdapter.notifyDataSetChanged()
 
 
     }
