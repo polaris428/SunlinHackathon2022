@@ -76,6 +76,8 @@ class ShopFragment : Fragment() {
             binding.accountButton.visibility=View.VISIBLE
             binding.loginTextView.visibility=View.GONE
             binding.recyclerView.visibility=View.VISIBLE
+            binding.lottieView.playAnimation()
+            binding.lottieView.loop(true)
             var datas = arrayListOf<shopItem>()
             var call = RetrofitClass.getApiService().getShop()
             call.enqueue(object : Callback<ShopData> {
@@ -87,6 +89,8 @@ class ShopFragment : Fragment() {
                     binding.recyclerView.adapter = shopAdapter
                     shopAdapter.listData = datas
                     shopAdapter.notifyDataSetChanged()
+                    binding.lottieView.visibility= View.GONE
+                    binding.lottieView.cancelAnimation()
 
                 }
 
