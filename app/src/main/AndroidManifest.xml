@@ -16,7 +16,9 @@
         android:theme="@style/Theme.SunlinHackathon2022"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".mypage.MyPageActivity"
+            android:exported="true" />
         <activity
             android:name=".StoryDetailActivity"
             android:exported="false" />
