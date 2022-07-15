@@ -27,6 +27,9 @@ class BarcodeActivity : AppCompatActivity() {
         binding.productExplanation.text=  intent.getStringExtra("description")
         binding.barcode.setImageBitmap(barcode)
         Glide.with(this).load( intent.getStringExtra("photo")).centerCrop().into(binding.imageView)
+        binding.back.setOnClickListener {
+            finish()
+        }
 
 
 
