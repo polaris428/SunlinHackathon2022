@@ -45,7 +45,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                 }
                 .setPositiveButton("확인") { dialog, which ->
                     if(true){
-                        barcode(token,Buy("test",100,"test"))
+                        barcode(token,Buy(name,price,photo))
                     }else{
                         Toast.makeText(this,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
                     }
