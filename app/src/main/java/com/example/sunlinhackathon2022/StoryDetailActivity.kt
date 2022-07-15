@@ -1,5 +1,6 @@
 package com.example.sunlinhackathon2022
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -15,9 +16,15 @@ class StoryDetailActivity : AppCompatActivity() {
         binding.back.setOnClickListener {
             finish()
         }
+        val animalARBaseUrl = "https://arvr.google.com/scene-viewer/web?file=https://storage.googleapis.com/ar-answers-in-search-models/static/"
         val animal = intent.getStringExtra("animal")
         when (animal) {
             "tiger" -> {
+                binding.arBtn.setOnClickListener {
+                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+                    ARIntent.putExtra("arUrl",animalARBaseUrl+"Tiger/model.glb")
+                    startActivity(ARIntent)
+                }
                 binding.title.text = "호랑이의 이야기"
                 binding.animalName.text = "호랑이"
                 binding.animalImageView.setImageResource(R.drawable.tiger_story)
@@ -42,6 +49,11 @@ class StoryDetailActivity : AppCompatActivity() {
 그 팜유를 주로 사용해준다면 우릴 살릴 수 있어!"""
             }
             "wolf"->{
+                binding.arBtn.setOnClickListener {
+                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+                    ARIntent.putExtra("arUrl",animalARBaseUrl+"TimberWolf/model.glb")
+                    startActivity(ARIntent)
+                }
                 binding.title.text = "늑대의 이야기"
                 binding.animalName.text = "늑대"
                 binding.animalImageView.setImageResource(R.drawable.wolf_story)
@@ -64,6 +76,11 @@ class StoryDetailActivity : AppCompatActivity() {
             }
 
             "tortoise"->{
+                binding.arBtn.setOnClickListener {
+                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+                    ARIntent.putExtra("arUrl",animalARBaseUrl+"GreenSeaTurtle/model.glb")
+                    startActivity(ARIntent)
+                }
                 binding.title.text = "바다거북의 이야기"
                 binding.animalName.text = "바다거북"
                 binding.animalImageView.setImageResource(R.drawable.tortoise_story)
@@ -85,6 +102,11 @@ class StoryDetailActivity : AppCompatActivity() {
  """
             }
             "panda"->{
+                binding.arBtn.setOnClickListener {
+                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+                    ARIntent.putExtra("arUrl",animalARBaseUrl+"GiantPanda/model.glb")
+                    startActivity(ARIntent)
+                }
                 binding.title.text = "판다의 이야기"
                 binding.animalName.text = "판다"
                 binding.animalImageView.setImageResource(R.drawable.panda_story)
