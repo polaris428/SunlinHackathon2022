@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.sunlinhackathon2022.account.SignInActivity
 import com.example.sunlinhackathon2022.databinding.ActivityMainBinding
 
 import com.example.sunlinhackathon2022.fragment.*
@@ -90,13 +91,15 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "scanned" + result.contents, Toast.LENGTH_LONG).show()
                 Log.d("TTT", "QR 코드 URL:${result.contents}")
 
-                val checkList = arrayOf("1","2","3","4","5","6","7","8")
+
+
+                //val checkList = arrayOf("1","2","3","4","5","6","7","8")
                 val qrAnimalIntent = Intent(this, AnimalDetailActivity::class.java)
                 val qrGameAnimalIntent1 = Intent(this, EndangeredCountMinigameActivity::class.java)
                 val qrGameAnimalIntent2 = Intent(this, TurtleTouchActivity::class.java)
                 //유효 QR 검사
-                if(result.contents !in checkList) {
-                    Toast.makeText(this, "유효하지 않은 QR코드입니다", Toast.LENGTH_LONG).show()
+                if(token == "") {
+                    startActivity(Intent(this, SignInActivity::class.java ))
                 } else {
                     val call1 = RetrofitClass.getApiService().getDictList(token)
                     call1.enqueue(object : Callback<DictData> {

@@ -1,11 +1,13 @@
 package com.example.sunlinhackathon2022.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -41,6 +43,7 @@ class HomeFragment : Fragment() {
 
         Toast.makeText(binding.root.context,"화면을 드래그해 동물원을 둘러보세요",Toast.LENGTH_LONG).show()
         initAdapter()
+
         return binding.root
     }
     private fun initAdapter() {
