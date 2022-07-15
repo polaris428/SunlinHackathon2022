@@ -8,41 +8,44 @@ import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
 
-class IntroActivity  : AppIntro() {
+class IntroActivity : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTransformer(AppIntroPageTransformerType.Fade)
         setTransformer(
             AppIntroPageTransformerType.Parallax(
-            titleParallaxFactor = 1.0,
-            imageParallaxFactor = -1.0,
-            descriptionParallaxFactor = 2.0
-        ))
+                titleParallaxFactor = 1.0,
+                imageParallaxFactor = -1.0,
+                descriptionParallaxFactor = 2.0
+            )
+        )
         isColorTransitionsEnabled = true
         addSlide(
             AppIntroFragment.createInstance(
-                title = "Welcome...",
+                title = "QR코드를 찍으세요",
                 titleColorRes = R.color.black,
-                description = "This is the first slide of the example"
+                description = "qr코드를 찍어 멸종 위기 동물을 알아봐요",
+                descriptionColorRes = R.color.black,
 
-            )
+                )
         )
         addSlide(
             AppIntroFragment.createInstance(
-                title = "...Let's get started!",
+                title = "동물을 구해주세요",
                 titleColorRes = R.color.black,
-                description = "This is the last slide, I won't annoy you more :)"
+                description = "미니게임을 통해 멸종 위기 동물을 구해주세요",
+                descriptionColorRes = R.color.black,
             )
         )
         addSlide(
             AppIntroFragment.createInstance(
-                title = "The title of your slide",
-                description = "A description that will be shown on the bottom",
+                title = "동물을 보호해주세요",
+                description = "멸종위기 동물들을 보호해 오래동안 볼 수 있도록 보호해주세요",
                 imageDrawable = R.drawable.ic_launcher_foreground,
                 backgroundDrawable = R.drawable.ic_launcher_background,
                 titleColorRes = R.color.black,
-                descriptionColorRes = R.color.purple_700,
-                backgroundColorRes = R.color.teal_700,
+                descriptionColorRes = R.color.black
+                //backgroundColorRes = R.color.teal_700,
 
                 )
         )
@@ -51,7 +54,7 @@ class IntroActivity  : AppIntro() {
 
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
-        var intent=Intent(this,MainActivity::class.java)
+        var intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         // Decide what to do when the user clicks on "Skip"
         finish()
