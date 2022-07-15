@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.sunlinhackathon2022.databinding.ItemBarcodeListBinding
+import com.example.sunlinhackathon2022.fragment.shop.purchase.Barcode
 
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
@@ -16,13 +17,13 @@ import com.google.zxing.common.BitMatrix
 
 
 class BarcodeAdapter: RecyclerView.Adapter<BarcodeAdapter.Holder>() {
-    var listData = mutableListOf<BarcodeList>()
+    var listData = mutableListOf<Barcode>()
     class Holder(val binding: ItemBarcodeListBinding) : RecyclerView.ViewHolder(binding.root){
-        fun setData(barcodeList: BarcodeList){
-            binding.barcodeTextView.text=barcodeList.barcode[position].name
+        fun setData(barcode: Barcode){
+            binding.barcodeTextView.text=barcode.name
 
-            val barcode= createBarcode(barcodeList.barcode[position].barcode, binding)
-           binding.barcodeImageView.setImageBitmap(barcode)
+            val barcode1= createBarcode(barcode.barcode, binding)
+           binding.barcodeImageView.setImageBitmap(barcode1)
 
         }
 
@@ -63,8 +64,8 @@ class BarcodeAdapter: RecyclerView.Adapter<BarcodeAdapter.Holder>() {
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val shopData = listData[position]
-        holder.setData(shopData)
+        val barcode = listData[position]
+        holder.setData(barcode)
     }
 
     override fun getItemCount(): Int {

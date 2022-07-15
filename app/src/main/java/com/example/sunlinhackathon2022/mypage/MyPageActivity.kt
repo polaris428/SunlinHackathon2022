@@ -8,6 +8,7 @@ import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.ActivityMyPageBinding
 import com.example.sunlinhackathon2022.fragment.shop.ShopAdapter
 import com.example.sunlinhackathon2022.fragment.shop.ShopData
+import com.example.sunlinhackathon2022.fragment.shop.purchase.Barcode
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,14 +22,15 @@ class MyPageActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("account", 0)
 
         val token =sharedPreferences.getString("token","").toString()
+        Log.d("token",token)
         val call=RetrofitClass.getApiService().getBarcodeList(token)
         call.enqueue(object :Callback<BarcodeList>{
             override fun onResponse(call: Call<BarcodeList>, response: Response<BarcodeList>) {
                 if(response.isSuccessful){
                     Log.d("test",response.body()!!.barcode.toString())
                     var barcodeAdapter = BarcodeAdapter()
-                    var datas = arrayListOf<BarcodeList>()
-                    response.body()?.let { datas.add(it)}
+                    var datas = arrayListOf<Barcode>()
+                    datas=response.body()!!.barcode
                         binding.recyclerView.layoutManager = LinearLayoutManager(this@MyPageActivity)
 
                     binding.recyclerView.adapter = barcodeAdapter
