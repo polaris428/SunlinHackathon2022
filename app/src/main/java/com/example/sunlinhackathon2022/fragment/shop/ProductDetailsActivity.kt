@@ -38,20 +38,22 @@ class ProductDetailsActivity : AppCompatActivity() {
         val price=  intent.getIntExtra("price",0)
         binding.costText.text=price.toString()+"p"
         binding.payButton.setOnClickListener {
-            MaterialAlertDialogBuilder(this)
-                .setTitle("결제하시겠습니까?")
-                .setMessage("정말 결제하시겠습니까?\n결제시 환불이 어렵습니다.")
-                .setNegativeButton("취소") { dialog, which ->
-                    // Respond to negative button press
-                }
-                .setPositiveButton("확인") { dialog, which ->
-                    if(true){
-                        barcode(token,Buy(name,price,photo))
-                    }else{
-                        Toast.makeText(this,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
+            if(price>=point){
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("결제하시겠습니까?")
+                    .setMessage("정말 결제하시겠습니까?\n결제시 환불이 어렵습니다.")
+                    .setNegativeButton("취소") { dialog, which ->
+                        // Respond to negative button press
                     }
-                }
-                .show()
+                    .setPositiveButton("확인") { dialog, which ->
+                        barcode(token,Buy(name,price,photo))
+                    }
+                    .show()
+
+            }else{
+                Toast.makeText(this,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
+            }
+
         }
         binding.back.setOnClickListener {
             finish()
