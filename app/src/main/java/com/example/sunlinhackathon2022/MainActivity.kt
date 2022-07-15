@@ -111,15 +111,12 @@ class MainActivity : AppCompatActivity() {
                             if(response.isSuccessful) {
                                 edit.putInt("point",point+10000)
                                 if(result.contents.toInt() in response.body()!!.dict) { //있다
-                                    if(result.contents.toInt() in listOf(4,6,8)) { //게임대상
-                                        val rand = (0..1).random()
-                                        if(rand == 0) {
-                                            qrGameAnimalIntent1.putExtra("animalCode",result.contents)
-                                            startActivity(qrGameAnimalIntent1)
-                                        } else {
-                                            qrGameAnimalIntent2.putExtra("animalCode",result.contents)
-                                            startActivity(qrGameAnimalIntent2)
-                                        }
+                                    if(result.contents.toInt() == 4) { //게임대상
+                                        qrGameAnimalIntent1.putExtra("animalCode",result.contents)
+                                        startActivity(qrGameAnimalIntent1)
+                                    } else if(result.contents.toInt() == 6) {
+                                        qrGameAnimalIntent2.putExtra("animalCode",result.contents)
+                                        startActivity(qrGameAnimalIntent2)
                                     } else { //게임대상X
                                         qrAnimalIntent.putExtra("animalCode", result.contents)
                                         startActivity(qrAnimalIntent)
@@ -132,15 +129,12 @@ class MainActivity : AppCompatActivity() {
                                             response: Response<ResultData>
                                         ) {
                                             if(response.isSuccessful) {
-                                                if(result.contents.toInt() in listOf(4,6,8)) { //게임대상
-                                                    val rand = (0..1).random()
-                                                    if(rand == 0) {
-                                                        qrGameAnimalIntent1.putExtra("animalCode",result.contents)
-                                                        startActivity(qrGameAnimalIntent1)
-                                                    } else {
-                                                        qrGameAnimalIntent2.putExtra("animalCode",result.contents)
-                                                        startActivity(qrGameAnimalIntent2)
-                                                    }
+                                                if(result.contents.toInt() == 4) { //게임대상
+                                                    qrGameAnimalIntent1.putExtra("animalCode",result.contents)
+                                                    startActivity(qrGameAnimalIntent1)
+                                                } else if(result.contents.toInt() == 6) {
+                                                    qrGameAnimalIntent2.putExtra("animalCode",result.contents)
+                                                    startActivity(qrGameAnimalIntent2)
                                                 } else { //게임대상X
                                                     qrAnimalIntent.putExtra("animalCode", result.contents)
                                                     startActivity(qrAnimalIntent)
