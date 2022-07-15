@@ -3,6 +3,7 @@ package com.example.sunlinhackathon2022.mypage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.ActivityMyPageBinding
@@ -23,6 +24,8 @@ class MyPageActivity : AppCompatActivity() {
 
         val token =sharedPreferences.getString("token","").toString()
         Log.d("token",token)
+        binding.lottieView.playAnimation()
+        binding.lottieView.loop(true)
         val call=RetrofitClass.getApiService().getBarcodeList(token)
         call.enqueue(object :Callback<BarcodeList>{
             override fun onResponse(call: Call<BarcodeList>, response: Response<BarcodeList>) {
@@ -36,6 +39,8 @@ class MyPageActivity : AppCompatActivity() {
                     binding.recyclerView.adapter = barcodeAdapter
                     barcodeAdapter.listData =datas
                     barcodeAdapter.notifyDataSetChanged()
+                    binding.lottieView.visibility= View.GONE
+                    binding.lottieView.cancelAnimation()
                 }else{
                     Log.d("tst","sfasd")
                 }
