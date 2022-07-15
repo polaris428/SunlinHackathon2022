@@ -15,7 +15,6 @@ import com.example.sunlinhackathon2022.fragment.illustratedbook.DictionaryFragme
 import com.example.sunlinhackathon2022.fragment.illustratedbook.ResultData
 import com.example.sunlinhackathon2022.fragment.shop.ShopFragment
 import com.example.sunlinhackathon2022.minigame.EndangeredCountMinigameActivity
-import com.example.sunlinhackathon2022.minigame.TigerTouchMinigameActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import retrofit2.Call
 import retrofit2.Callback
