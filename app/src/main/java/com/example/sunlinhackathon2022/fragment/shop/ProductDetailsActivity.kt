@@ -13,6 +13,7 @@ import com.example.sunlinhackathon2022.Token
 import com.example.sunlinhackathon2022.databinding.ActivityProductDetailsBinding
 import com.example.sunlinhackathon2022.fragment.shop.purchase.Barcode
 import com.example.sunlinhackathon2022.fragment.shop.purchase.Buy
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,12 +34,25 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         val price=  intent.getIntExtra("price",-1)
         binding.payButton.setOnClickListener {
-            if(true){
-                barcode(token,Buy("test",100,"test"))
-            }else{
-                Toast.makeText(this,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
-            }
+            MaterialAlertDialogBuilder(this)
+                .setTitle("결제하시겠습니까?")
+                .setMessage("정말 결제하시겠습니까?\n결제시 환불이 어렵습니다.")
+                .setNegativeButton("취소") { dialog, which ->
+                    // Respond to negative button press
+                }
+                .setPositiveButton("확인") { dialog, which ->
+                    if(true){
+                        barcode(token,Buy("test",100,"test"))
+                    }else{
+                        Toast.makeText(this,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .show()
         }
+        binding.back.setOnClickListener {
+            finish()
+        }
+
         binding.productName.text=intent.getStringExtra("name").toString()
         binding.productExplanation.text=description
         binding.productTag.text=intent.getStringExtra("tag").toString()
