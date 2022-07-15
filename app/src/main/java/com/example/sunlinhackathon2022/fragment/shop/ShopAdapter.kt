@@ -27,6 +27,7 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
             binding.SecondTitle.text=shopData.shopItem[position].name2
             binding.firstTag.text=shopData.shopItem[position].category1
             binding.secondTag.text=shopData.shopItem[position].category2
+            binding.firstCost.text=shopData.shopItem[position].category2
             Glide.with(binding.root).load(shopData.shopItem[adapterPosition].photo1).centerCrop().into(binding.firstImage)
             Glide.with(binding.root).load(shopData.shopItem[adapterPosition].photo2).centerCrop().into(binding.SecondImage)
 
@@ -36,6 +37,7 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
                 intent.putExtra("tag",shopData.shopItem[position].category1)
                 intent.putExtra("photo",shopData.shopItem[position].photo1)
                 intent.putExtra("description",shopData.shopItem[position].description1)
+                intent.putExtra("price",shopData.shopItem[position].price1)
                 binding.root.context.startActivity(intent)
             }
             binding.goods2.setOnClickListener {
@@ -44,6 +46,7 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
                 intent.putExtra("tag",shopData.shopItem[position].category1)
                 intent.putExtra("photo",shopData.shopItem[position].photo1)
                 intent.putExtra("description",shopData.shopItem[position].description1)
+                intent.putExtra("price",shopData.shopItem[position].price2)
                 binding.root.context.startActivity(intent)
             }
         }
