@@ -35,7 +35,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         var photo=intent.getStringExtra("photo").toString()
          description=intent.getStringExtra("description").toString()
 
-        val price=  intent.getIntExtra("price",-1)
+        val price=  intent.getIntExtra("price",0)
+        binding.costText.text=price.toString()+"p"
         binding.payButton.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle("결제하시겠습니까?")
