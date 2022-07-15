@@ -34,7 +34,7 @@
             android:paddingHorizontal="40dp"
             android:paddingTop="56dp">
             <TextView
-                android:id="@+id/productName"
+                android:id="@+id/animalName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25sp"
@@ -43,12 +43,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
             <TextView
-                android:id="@+id/productExplanation"
+                android:id="@+id/animalExplanation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="안고 있으면 행복해질 수 있다"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/productName"
+                app:layout_constraintTop_toBottomOf="@id/animalName"
                 app:layout_constraintStart_toStartOf="parent"/>
             <TextView
                 android:id="@+id/text"
@@ -59,51 +59,52 @@
                 android:layout_marginTop="40dp"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/productExplanation"/>
+                app:layout_constraintTop_toBottomOf="@id/animalExplanation"/>
             <ImageView
-                android:id="@+id/productRecomand1"
+                android:id="@+id/animalRecommend1"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@id/text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintEnd_toStartOf="@id/productRecomand2"/>
+                app:layout_constraintEnd_toStartOf="@id/animalRecommend2"/>
             <TextView
-                android:id="@+id/recomandText1"
+                android:id="@+id/recommendText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="고뤠"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/productRecomand1"
-                app:layout_constraintStart_toStartOf="@id/productRecomand1"
-                app:layout_constraintEnd_toEndOf="@id/productRecomand1"/>
+                app:layout_constraintTop_toBottomOf="@id/animalRecommend1"
+                app:layout_constraintStart_toStartOf="@id/animalRecommend1"
+                app:layout_constraintEnd_toEndOf="@id/animalRecommend1"/>
             <ImageView
-                android:id="@+id/productRecomand2"
+                android:id="@+id/animalRecommend2"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@id/text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/productRecomand1"/>
+                app:layout_constraintStart_toEndOf="@id/animalRecommend1"/>
             <TextView
-                android:id="@+id/recomandText2"
+                android:id="@+id/recommendText2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="고뤠"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/productRecomand2"
-                app:layout_constraintStart_toStartOf="@id/productRecomand2"
-                app:layout_constraintEnd_toEndOf="@id/productRecomand2"/>
+                app:layout_constraintTop_toBottomOf="@id/animalRecommend2"
+                app:layout_constraintStart_toStartOf="@id/animalRecommend2"
+                app:layout_constraintEnd_toEndOf="@id/animalRecommend2"/>
             <Button
                 android:id="@+id/payButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="AR로 만나기"
+                android:textSize="16sp"
                 android:backgroundTint="#039BE5"
-                app:layout_constraintTop_toBottomOf="@id/recomandText1"
+                app:layout_constraintTop_toBottomOf="@id/recommendText1"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
