@@ -20,7 +20,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         var point=sharedPreferences.getInt("point",0)
 
         val price= Integer.getInteger( intent.getStringExtra("price").toString())
-        binding.purchaseButton.setOnClickListener {
+        binding.payButton.setOnClickListener {
             if(price>point){
                 Log.d("상품 구매","성공")
             }else{
