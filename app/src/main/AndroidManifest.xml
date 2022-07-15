@@ -20,6 +20,9 @@
             android:name=".BarcodeActivity"
             android:exported="false" />
         <activity
+            android:name=".ArWebViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".AnimalDetailActivity"
             android:exported="false" />
         <activity
