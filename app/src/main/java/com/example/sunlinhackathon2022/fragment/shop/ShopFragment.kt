@@ -17,6 +17,7 @@ import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.account.SignInActivity
 import com.example.sunlinhackathon2022.account.SignInData
 import com.example.sunlinhackathon2022.databinding.FragmentShopBinding
+import com.example.sunlinhackathon2022.mypage.MyPageActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,7 +54,11 @@ class ShopFragment : Fragment() {
         binding = FragmentShopBinding.inflate(inflater, container, false)
         var sharedPreferences=binding.root.context.getSharedPreferences("account",MODE_PRIVATE);
         val id=sharedPreferences.getString("id","")
+        binding.accountButton.setOnClickListener {
+            startActivity(Intent(binding.root.context,MyPageActivity::class.java))
+        }
         if (id==""){
+            binding.accountButton.visibility=View.GONE
             binding.loginTextView.visibility=View.VISIBLE
             binding.recyclerView.visibility=View.GONE
             val str = "상점을 이용하시러면 \n 로그인 해주세요"
@@ -68,6 +73,7 @@ class ShopFragment : Fragment() {
                 startActivity(intent)
             }
         }else{
+            binding.accountButton.visibility=View.VISIBLE
             binding.loginTextView.visibility=View.GONE
             binding.recyclerView.visibility=View.VISIBLE
             val datas = arrayListOf<ShopData>()

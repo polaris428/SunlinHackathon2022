@@ -28,10 +28,12 @@
         app:layout_constraintLeft_toLeftOf="@id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/accountButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_profile"
+        android:background="#00FFFFFF"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView"
         android:layout_marginRight="20dp"/>
