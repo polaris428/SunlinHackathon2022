@@ -37,11 +37,6 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         val price=  intent.getIntExtra("price",-1)
         binding.payButton.setOnClickListener {
-            if(true){
-                barcode(token,Buy(name,price,photo))
-            }else{
-                Toast.makeText(this,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
-            }
             MaterialAlertDialogBuilder(this)
                 .setTitle("결제하시겠습니까?")
                 .setMessage("정말 결제하시겠습니까?\n결제시 환불이 어렵습니다.")
@@ -50,7 +45,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                 }
                 .setPositiveButton("확인") { dialog, which ->
                     if(true){
-                        barcode(token,Buy("test",100,"test"))
+                        barcode(token,Buy(name,price,photo))
                     }else{
                         Toast.makeText(this,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
                     }

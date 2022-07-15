@@ -23,7 +23,12 @@ class MyPageActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("account", 0)
 
         val token =sharedPreferences.getString("token","").toString()
+        val id =sharedPreferences.getString("id","").toString()
+        var point:Int=sharedPreferences.getInt("point",0)
+
         Log.d("token",token)
+        binding.point.text=point.toString()+"p"
+        binding.userName.text=id
         binding.lottieView.playAnimation()
         binding.lottieView.loop(true)
         val call=RetrofitClass.getApiService().getBarcodeList(token)
