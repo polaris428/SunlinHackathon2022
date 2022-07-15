@@ -89,6 +89,9 @@ class DictionaryFragment : Fragment() {
                         idList.add(illustratedBookData(animalDataList[idx-1][2], animalDataList[idx-1][0]))
                     }
                     Log.d("dogam",idList.toString())
+                    if(idList.size>=1){
+                        binding.seadView.visibility=View.GONE
+                    }
                     illustratedbookAdapter.listData=idList
                     illustratedbookAdapter.notifyDataSetChanged()
                 }
