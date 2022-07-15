@@ -28,17 +28,18 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding=ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val sharedPreferences = getSharedPreferences("account", 0)
-        var point:Int=sharedPreferences.getInt("point",0)
-        var token =sharedPreferences.getString("token","").toString()
+        val edit=sharedPreferences.edit()
+        val point:Int=sharedPreferences.getInt("point",0)
+        val token =sharedPreferences.getString("token","").toString()
         val intent:Intent= getIntent()
-        var name=intent.getStringExtra("name").toString()
-        var photo=intent.getStringExtra("photo").toString()
+        val name=intent.getStringExtra("name").toString()
+        val photo=intent.getStringExtra("photo").toString()
          description=intent.getStringExtra("description").toString()
 
         val price=  intent.getIntExtra("price",0)
         binding.costText.text=price.toString()+"p"
         binding.payButton.setOnClickListener {
-            if(price>=point){
+            if(point>=price){
                 MaterialAlertDialogBuilder(this)
                     .setTitle("결제하시겠습니까?")
                     .setMessage("정말 결제하시겠습니까?\n결제시 환불이 어렵습니다.")
@@ -46,6 +47,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         // Respond to negative button press
                     }
                     .setPositiveButton("확인") { dialog, which ->
+                        edit.putInt("point",point-price)
                         barcode(token,Buy(name,price,photo))
                     }
                     .show()
