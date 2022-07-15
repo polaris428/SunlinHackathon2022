@@ -74,8 +74,9 @@ class MainActivity : AppCompatActivity() {
         Log.d("TTT", "QR 코드 체크")
 
         val sharedPreferences = getSharedPreferences("account", 0)
-
+        val edit=sharedPreferences.edit()
         val token =sharedPreferences.getString("token","").toString()
+        val point =sharedPreferences.getInt("point",0)
         Log.d("token",token)
 
         //결과가 있으면
@@ -108,6 +109,7 @@ class MainActivity : AppCompatActivity() {
                             response: Response<DictData>
                         ) {
                             if(response.isSuccessful) {
+                                edit.putInt("point",point+10000)
                                 if(result.contents.toInt() in response.body()!!.dict) { //있다
                                     if(result.contents.toInt() in listOf(4,6,8)) { //게임대상
                                         val rand = (0..1).random()
