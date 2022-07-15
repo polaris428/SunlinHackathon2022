@@ -5,10 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.sunlinhackathon2022.HomeFragment1
-import com.example.sunlinhackathon2022.HomeFragment2
-import com.example.sunlinhackathon2022.R
-import com.example.sunlinhackathon2022.databinding.FragmentDictionaryBinding
 import com.example.sunlinhackathon2022.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
