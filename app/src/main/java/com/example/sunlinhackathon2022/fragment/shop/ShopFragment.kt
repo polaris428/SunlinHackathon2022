@@ -58,6 +58,7 @@ class ShopFragment : Fragment() {
             startActivity(Intent(binding.root.context,MyPageActivity::class.java))
         }
         if (id==""){
+            binding.lottieView.visibility= View.GONE
             binding.accountButton.visibility=View.GONE
             binding.loginTextView.visibility=View.VISIBLE
             binding.recyclerView.visibility=View.GONE
