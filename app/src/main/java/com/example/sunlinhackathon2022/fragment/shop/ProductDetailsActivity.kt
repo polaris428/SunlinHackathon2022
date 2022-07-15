@@ -19,6 +19,7 @@ import retrofit2.Response
 
 class ProductDetailsActivity : AppCompatActivity() {
     lateinit var  binding: ActivityProductDetailsBinding
+    lateinit  var description:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -27,8 +28,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("account", 0)
         var point:Int=sharedPreferences.getInt("point",0)
         var token =sharedPreferences.getString("token","").toString()
-        Log.d("token",token)
         val intent:Intent= getIntent()
+         description=intent.getStringExtra("description").toString()
 
         val price=  intent.getIntExtra("price",-1)
         binding.payButton.setOnClickListener {
@@ -39,7 +40,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
         }
         binding.productName.text=intent.getStringExtra("name").toString()
-        binding.productExplanation.text=intent.getStringExtra("description").toString()
+        binding.productExplanation.text=description
         binding.productTag.text=intent.getStringExtra("tag").toString()
         Glide.with(this).load(intent.getStringExtra("photo")).centerCrop().into(binding.productImageView)
     }
@@ -49,9 +50,13 @@ class ProductDetailsActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Barcode>, response: Response<Barcode>) {
                if(response.isSuccessful){
                    var intent=Intent(this@ProductDetailsActivity,BarcodeActivity::class.java)
+                   intent.putExtra("barcode",response.body()!!.barcode)
+                   intent.putExtra("name",response.body()!!.name)
+                   intent.putExtra("photo",response.body()!!.photo)
+                   intent.putExtra("description",description)
                    startActivity(intent)
                }else{
-                   Log.d("adf","adfsaf")
+                   Toast.makeText(this@ProductDetailsActivity,"잠시 후 다시 시도해주세요",Toast.LENGTH_SHORT).show()
                }
             }
 
