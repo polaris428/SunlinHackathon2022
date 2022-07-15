@@ -1,6 +1,7 @@
 package com.example.sunlinhackathon2022.fragment.illustratedbook
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
@@ -23,8 +24,9 @@ class illustratedbookAdapter : RecyclerView.Adapter<illustratedbookAdapter.Holde
             binding.animalImageView.setOnClickListener {
                 val nameList = listOf("대왕판다","너구리","사슴","늑대","백상아리","바다거북","악어","호랑이")
                 val animalId = nameList.indexOf(illustratedBookData.name) + 1
+                Log.d("animalll",animalId.toString())
                 val detailIntent = Intent(binding.root.context, AnimalDetailActivity::class.java)
-                detailIntent.putExtra("animalCode",animalId)
+                detailIntent.putExtra("animalCode",animalId.toString())
                 binding.root.context.startActivity(detailIntent)
             }
         }
