@@ -46,9 +46,8 @@ class DictionaryFragment : Fragment() {
             listOf("호랑이","Tiger/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400103532904449/tiger.jpg","")
         )
 
-        val db = this.activity?.let { Room.databaseBuilder(it.applicationContext, AnimalDatabase::class.java, "AnimalDTO").build() }
-        val animalDao = db?.animalDao()
-        val animals : List<AnimalDTO> = animalDao!!.getAll()
+
+
         /* RecyclerView 코드 작성해야 하는 부분
         * fragment/dictionary 패키지 안에다 해주시면 감사하겠습니다.
         *
