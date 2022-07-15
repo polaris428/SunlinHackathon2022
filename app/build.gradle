@@ -73,5 +73,6 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation "androidx.room:room-paging:2.5.0-alpha02"
+    implementation 'com.google.zxing:core:3.3.0'
 
 }
