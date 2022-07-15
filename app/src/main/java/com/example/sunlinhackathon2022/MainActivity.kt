@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("account", 0)
         val edit=sharedPreferences.edit()
         val token =sharedPreferences.getString("token","").toString()
+        val test =sharedPreferences.getString("test","").toString()
         val point =sharedPreferences.getInt("point",0)
         Log.d("token",token)
 
@@ -110,8 +111,12 @@ class MainActivity : AppCompatActivity() {
                         ) {
                             if(response.isSuccessful) {
                                 edit.putInt("point",point+10000)
+
                                 edit.apply()
-                                if(result.contents.toInt() in response.body()!!.dict) { //있다
+                                if(result.contents.toInt() in response.body()!!.dict) {
+                                    edit.putString("test",response.body()!!.dict.toString())//있다
+                                    Log.d("response.body()!!.dict.toString()",response.body()!!.dict.toString())
+                                    edit.apply()
                                     if(result.contents.toInt() == 4) { //게임대상
                                         qrGameAnimalIntent1.putExtra("animalCode",result.contents)
                                         startActivity(qrGameAnimalIntent1)
