@@ -19,14 +19,14 @@ class AnimalDetailActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
         val animalDataList: List<List<String>> = listOf( // 0 이름 1 ar 2 이미지 3 디테일
-            listOf("대왕판다","GiantPanda/model.glb","",""),
-            listOf("너구리","Raccoon/model.glb","",""),
-            listOf("사슴","WhiteTailedDeer/model.glb","",""),
-            listOf("늑대","TimberWolf/model.glb","",""),
-            listOf("백상아리","GreatWhiteShark/model.glb","",""),
-            listOf("바다거북","GreenSeaTurtle/model.glb","",""),
-            listOf("악어","Alligator/model.glb","",""),
-            listOf("호랑이","Tiger/model.glb","","")
+            listOf("대왕판다","GiantPanda/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400102853414972/panda.jpg",""),
+            listOf("너구리","Raccoon/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400103927160873/raccoon.jpg",""),
+            listOf("사슴","WhiteTailedDeer/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400102161350727/deer.jpg",""),
+            listOf("늑대","TimberWolf/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400102454964325/wolf.jpg",""),
+            listOf("백상아리","GreatWhiteShark/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400101335081001/shark.jpg",""),
+            listOf("바다거북","GreenSeaTurtle/model.glb","https://media.discordapp.net/attachments/997399980765618177/997453166297763850/turtle.jpg",""),
+            listOf("악어","Alligator/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400101838405722/nile.jpg",""),
+            listOf("호랑이","Tiger/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400103532904449/tiger.jpg","")
         )
 
         val animalARBaseUrl = "https://arvr.google.com/scene-viewer/web?file=https://storage.googleapis.com/ar-answers-in-search-models/static/"
