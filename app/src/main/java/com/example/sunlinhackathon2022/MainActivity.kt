@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             // 컨텐츠가 있으면
             else {
                 //토스트를 띄운다.
-                Toast.makeText(this, "scanned" + result.contents, Toast.LENGTH_LONG).show()
+
                 Log.d("TTT", "QR 코드 URL:${result.contents}")
 
 
