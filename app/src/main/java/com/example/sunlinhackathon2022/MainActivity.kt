@@ -78,6 +78,9 @@ class MainActivity : AppCompatActivity() {
 
                 //웹뷰 설정
                 //웹뷰를 띄운다.
+                val qrAnimalIntent: Intent = Intent(this, AnimalDetailActivity::class.java)
+                qrAnimalIntent.putExtra("animalCode", result.contents)
+                startActivity(qrAnimalIntent)
 
             }
 
