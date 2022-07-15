@@ -60,7 +60,7 @@ class AnimalDetailActivity : AppCompatActivity() {
             startActivity(ARIntent)
         }
 
-        val getCall = RetrofitClass.getApiService().addDict(token, animalCode+1)
+        val getCall = RetrofitClass.getApiService().addDict(token, (animalCode+1).toString())
         getCall.enqueue(object : Callback<ResultData> {
             override fun onResponse(
                 call: Call<ResultData>,
