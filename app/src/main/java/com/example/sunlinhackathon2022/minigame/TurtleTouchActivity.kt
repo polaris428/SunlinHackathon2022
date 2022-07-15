@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import com.example.sunlinhackathon2022.AnimalDetailActivity
 import com.example.sunlinhackathon2022.MainActivity
 import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.databinding.ActivityTurtleTouchBinding
@@ -32,6 +33,11 @@ class TurtleTouchActivity : AppCompatActivity() {
                 val handler = Handler()
                 handler.postDelayed(Runnable {
                     //화면전환
+                    val animalId = intent.getStringExtra("animalCode")
+                    val detailIntent = Intent(this, AnimalDetailActivity::class.java)
+                    detailIntent.putExtra("animalCode",animalId)
+                    startActivity(detailIntent)
+
                 }, 3000)
             }
         }

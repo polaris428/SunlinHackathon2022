@@ -33,23 +33,10 @@ class EndangeredCountMinigameActivity : AppCompatActivity() {
             if(binding.inputCount.text.toString().toInt() == answer) {
                 val animalId = intent.getStringExtra("animalCode")
                 val detailIntent = Intent(this, AnimalDetailActivity::class.java)
-                val getCall = RetrofitClass.getApiService().addDict(token, animalId!!.toInt())
-                getCall.enqueue(object : Callback<ResultData> {
-                    override fun onResponse(
-                        call: Call<ResultData>,
-                        response: Response<ResultData>
-                    ) {
-                        if(response.isSuccessful) {
-                            detailIntent.putExtra("animalCode",animalId)
-                            startActivity(detailIntent)
-                        }
-                    }
+                detailIntent.putExtra("animalCode",animalId)
+                startActivity(detailIntent)
 
-                    override fun onFailure(call: Call<ResultData>, t: Throwable) {
-                        Log.d("mini_endaged","error")
-                    }
 
-                })
 
             } else if(binding.inputCount.text.toString().toInt() < answer) {
                 Toast.makeText(this, "입력한 값보다 정답이 더 큽니다.", Toast.LENGTH_LONG).show()
