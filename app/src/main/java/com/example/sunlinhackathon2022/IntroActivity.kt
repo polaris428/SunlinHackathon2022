@@ -35,7 +35,7 @@ class IntroActivity : AppIntro2() {
                 titleColorRes = R.color.black,
                 description = "qr코드를 찍어 멸종 위기 동물을 알아봐요",
                 descriptionColorRes = R.color.black,
-                imageDrawable = R.drawable.intro1
+                imageDrawable = R.drawable.qr
 
                 )
         )
@@ -44,15 +44,16 @@ class IntroActivity : AppIntro2() {
                 title = "동물을 구해주세요",
                 titleColorRes = R.color.black,
                 description = "미니게임을 통해 멸종 위기 동물을 구해주세요",
+
                 descriptionColorRes = R.color.black,
-                imageDrawable = R.drawable.intro2,
+                imageDrawable = R.drawable.ic_resuce,
             )
         )
         addSlide(
             AppIntroFragment.createInstance(
                 title = "동물을 보호해주세요",
                 description = "멸종위기 동물들을 보호해 오래동안 볼 수 있도록 보호해주세요",
-                imageDrawable = R.drawable.intro3,
+                imageDrawable = R.drawable.ic_protect,
                 titleColorRes = R.color.black,
                 descriptionColorRes = R.color.black
                 //backgroundColorRes = R.color.teal_700,
