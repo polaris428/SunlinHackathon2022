@@ -76,11 +76,11 @@ class ShopFragment : Fragment() {
             binding.accountButton.visibility=View.VISIBLE
             binding.loginTextView.visibility=View.GONE
             binding.recyclerView.visibility=View.VISIBLE
-            val datas = arrayListOf<ShopData>()
+            var datas = arrayListOf<shopItem>()
             var call = RetrofitClass.getApiService().getShop()
             call.enqueue(object : Callback<ShopData> {
                 override fun onResponse(call: Call<ShopData>, response: Response<ShopData>) {
-                    response.body()?.let { datas.add(it) }
+                   datas=response.body()!!.shopItem
                     var shopAdapter = ShopAdapter()
                     binding.recyclerView.layoutManager = LinearLayoutManager(getActivity())
 

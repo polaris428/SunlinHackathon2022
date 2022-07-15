@@ -11,7 +11,7 @@ import com.example.sunlinhackathon2022.databinding.ItemShopBinding
 
 
 class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
-    var listData = mutableListOf<ShopData>()
+    var listData = mutableListOf<shopItem>()
     var mContext: Context? =null
     lateinit var name1:String
     lateinit var name2:String
@@ -21,32 +21,32 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
     lateinit var photo2:String
 
     class Holder(val binding: ItemShopBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setData(shopData: ShopData){
+        fun setData(shopItem: shopItem){
             binding.root.context
-            binding.firstTitle.text=shopData.shopItem[position].name1
-            binding.SecondTitle.text=shopData.shopItem[position].name2
-            binding.firstTag.text=shopData.shopItem[position].category1
-            binding.secondTag.text=shopData.shopItem[position].category2
-            binding.firstCost.text=shopData.shopItem[position].category2
-            Glide.with(binding.root).load(shopData.shopItem[adapterPosition].photo1).centerCrop().into(binding.firstImage)
-            Glide.with(binding.root).load(shopData.shopItem[adapterPosition].photo2).centerCrop().into(binding.SecondImage)
+            binding.firstTitle.text=shopItem.name1
+            binding.SecondTitle.text=shopItem.name2
+            binding.firstTag.text=shopItem.category1
+            binding.secondTag.text=shopItem.category2
+            binding.firstCost.text=shopItem.category2
+            Glide.with(binding.root).load(shopItem.photo1).centerCrop().into(binding.firstImage)
+            Glide.with(binding.root).load(shopItem.photo2).centerCrop().into(binding.SecondImage)
 
             binding.goods1.setOnClickListener {
                 var intent=Intent(binding.root.context,ProductDetailsActivity::class.java)
-                intent.putExtra("name",shopData.shopItem[position].name1)
-                intent.putExtra("tag",shopData.shopItem[position].category1)
-                intent.putExtra("photo",shopData.shopItem[position].photo1)
-                intent.putExtra("description",shopData.shopItem[position].description1)
-                intent.putExtra("price",shopData.shopItem[position].price1)
+                intent.putExtra("name",shopItem.name1)
+                intent.putExtra("tag",shopItem.category1)
+                intent.putExtra("photo",shopItem.photo1)
+                intent.putExtra("description",shopItem.description1)
+                intent.putExtra("price",shopItem.price1)
                 binding.root.context.startActivity(intent)
             }
             binding.goods2.setOnClickListener {
                 var intent=Intent(binding.root.context,ProductDetailsActivity::class.java)
-                intent.putExtra("name",shopData.shopItem[position].name1)
-                intent.putExtra("tag",shopData.shopItem[position].category1)
-                intent.putExtra("photo",shopData.shopItem[position].photo1)
-                intent.putExtra("description",shopData.shopItem[position].description1)
-                intent.putExtra("price",shopData.shopItem[position].price2)
+                intent.putExtra("name",shopItem.name1)
+                intent.putExtra("tag",shopItem.category1)
+                intent.putExtra("photo",shopItem.photo1)
+                intent.putExtra("description",shopItem.description1)
+                intent.putExtra("price",shopItem.price2)
                 binding.root.context.startActivity(intent)
             }
         }
@@ -61,8 +61,8 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val shopData = listData[position]
-        holder.setData(shopData)
+        val shopItem = listData[position]
+        holder.setData(shopItem)
 
     }
 
