@@ -29,7 +29,7 @@ interface ApiService {
     fun getDictList(@Header("x-access-token")token: String):Call<DictData>
 
     @POST("auth/dict/{id}")
-    fun addDict(@Header("x-access-token")token: String,@Path("id") id: Int ):Call<ResultData>
+    fun addDict(@Header("x-access-token")token: String,@Path("id") id: String ):Call<ResultData>
 
     @POST("auth/point")
     fun updateMyPoint(@Header("x-access-token")token: String, @Body point: Int):Call<ResultData>
