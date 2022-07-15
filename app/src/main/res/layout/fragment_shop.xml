@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.ShopFragment">
+    tools:context=".fragment.shop.ShopFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -37,6 +37,7 @@
         android:layout_marginRight="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="10dp"

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.FragmentShopBinding
@@ -41,17 +42,24 @@ class ShopFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding=FragmentShopBinding.inflate(inflater,container,false)
+        binding = FragmentShopBinding.inflate(inflater, container, false)
 
-
-        var call=RetrofitClass.getApiService().getShop()
-        call.enqueue(object :Callback<ShopData>{
+        val datas = arrayListOf<ShopData>()
+        var call = RetrofitClass.getApiService().getShop()
+        call.enqueue(object : Callback<ShopData> {
             override fun onResponse(call: Call<ShopData>, response: Response<ShopData>) {
-                Log.d("test",response.body().toString())
+                response.body()?.let { datas.add(it) }
+                var shopAdapter = ShopAdapter()
+                binding.recyclerView.layoutManager = LinearLayoutManager(getActivity())
+
+                binding.recyclerView.adapter = shopAdapter
+                shopAdapter.listData = datas
+                shopAdapter.notifyDataSetChanged()
+
             }
 
             override fun onFailure(call: Call<ShopData>, t: Throwable) {
-               Log.d("실패","실패")
+                Log.d("실패", "실패")
             }
 
         })
