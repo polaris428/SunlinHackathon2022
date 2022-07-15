@@ -3,14 +3,18 @@
     <item
         android:id="@+id/item_fragment1"
         android:enabled="true"
-        android:title="프래그먼트1"
+        android:title="홈"
         android:icon="@drawable/ic_launcher_foreground"/>
 
     <item
         android:id="@+id/item_fragment2"
         android:enabled="true"
-        android:title="프래그먼트2"
+        android:title="프래그먼트"
         android:icon="@drawable/ic_launcher_foreground"/>
+    <item
+
+        android:enabled="false"
+        android:title="" />
     <item
         android:id="@+id/item_fragment3"
         android:enabled="true"
