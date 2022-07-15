@@ -1,6 +1,7 @@
 package com.example.sunlinhackathon2022.fragment.shop
 
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
@@ -13,6 +14,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sunlinhackathon2022.RetrofitClass
+import com.example.sunlinhackathon2022.account.SignInActivity
+import com.example.sunlinhackathon2022.account.SignInData
 import com.example.sunlinhackathon2022.databinding.FragmentShopBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,6 +63,10 @@ class ShopFragment : Fragment() {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
             binding.loginTextView.text=ssb
+            binding.loginTextView.setOnClickListener {
+                var intent=Intent(binding.root.context,SignInActivity::class.java)
+                startActivity(intent)
+            }
         }else{
             binding.loginTextView.visibility=View.GONE
             binding.recyclerView.visibility=View.VISIBLE
