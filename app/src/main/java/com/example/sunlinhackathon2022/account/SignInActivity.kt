@@ -1,5 +1,6 @@
 package com.example.sunlinhackathon2022.account
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -45,6 +46,10 @@ class SignInActivity : AppCompatActivity() {
                         call: Call<SignInData>,
                         response: Response<SignInData>
                     ) {
+                        var sharedPreferences=getSharedPreferences("account", Activity.MODE_PRIVATE);
+                        var editor=sharedPreferences.edit()
+                        editor.putString("id",email)
+                        editor.apply()
                         val intent = Intent(this@SignInActivity, IntroActivity::class.java)
                         startActivity(intent)
                         finish()
