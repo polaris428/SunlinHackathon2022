@@ -11,6 +11,7 @@ import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.Token
 import com.example.sunlinhackathon2022.databinding.ActivityProductDetailsBinding
+
 import com.example.sunlinhackathon2022.fragment.shop.purchase.Barcode
 import com.example.sunlinhackathon2022.fragment.shop.purchase.Buy
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -30,10 +31,17 @@ class ProductDetailsActivity : AppCompatActivity() {
         var point:Int=sharedPreferences.getInt("point",0)
         var token =sharedPreferences.getString("token","").toString()
         val intent:Intent= getIntent()
+        var name=intent.getStringExtra("name").toString()
+        var photo=intent.getStringExtra("photo").toString()
          description=intent.getStringExtra("description").toString()
 
         val price=  intent.getIntExtra("price",-1)
         binding.payButton.setOnClickListener {
+            if(true){
+                barcode(token,Buy(name,price,photo))
+            }else{
+                Toast.makeText(this,"포인트가 부족합니다",Toast.LENGTH_SHORT).show()
+            }
             MaterialAlertDialogBuilder(this)
                 .setTitle("결제하시겠습니까?")
                 .setMessage("정말 결제하시겠습니까?\n결제시 환불이 어렵습니다.")
@@ -53,10 +61,10 @@ class ProductDetailsActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.productName.text=intent.getStringExtra("name").toString()
+        binding.productName.text=name
         binding.productExplanation.text=description
         binding.productTag.text=intent.getStringExtra("tag").toString()
-        Glide.with(this).load(intent.getStringExtra("photo")).centerCrop().into(binding.productImageView)
+        Glide.with(this).load(photo).centerCrop().into(binding.productImageView)
     }
     fun barcode(token:String,buy: Buy){
         val call=RetrofitClass.getApiService().setBarcode(token,buy)

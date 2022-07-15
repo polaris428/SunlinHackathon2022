@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
+import com.bumptech.glide.Glide
 import com.example.sunlinhackathon2022.databinding.ActivityBarcodeBinding
 import com.example.sunlinhackathon2022.databinding.ActivityMainBinding
 import com.google.zxing.BarcodeFormat
@@ -18,14 +19,14 @@ class BarcodeActivity : AppCompatActivity() {
         setContentView(binding.root)
         var intent=getIntent()
 
-        intent.getStringExtra("photo")
+
 
 
         val barcode = createBarcode(intent.getStringExtra("barcode").toString())
         binding.productName.text=  intent.getStringExtra("name")
         binding.productExplanation.text=  intent.getStringExtra("description")
         binding.barcode.setImageBitmap(barcode)
-
+        Glide.with(this).load( intent.getStringExtra("photo")).centerCrop().into(binding.imageView)
 
 
 
