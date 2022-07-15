@@ -1,5 +1,6 @@
 package com.example.sunlinhackathon2022.account
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import com.example.sunlinhackathon2022.IntroActivity
+import com.example.sunlinhackathon2022.MainActivity
 import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.ActivitySignUpBinding
 import retrofit2.Call
@@ -39,15 +41,46 @@ class SignUpActivity : AppCompatActivity() {
                 val newUserData = NewUserData(name, email, password)
 
 
-                val call = RetrofitClass.getApiService().setUser(newUserData)
+                val call = RetrofitClass.getApiService().signUp(newUserData)
                 call.enqueue(object : Callback<SignUpData> {
                     override fun onResponse(
                         call: Call<SignUpData>,
                         response: Response<SignUpData>
                     ) {
-                        val intent = Intent(this@SignUpActivity, IntroActivity::class.java)
-                        startActivity(intent)
-                        finish()
+                        if(response.isSuccessful){
+                            var signInData=LogInData(email,password)
+                            var call2=RetrofitClass.getApiService().signIn(signInData)
+                            call2.enqueue(object :Callback<SignInData>{
+
+                                override fun onFailure(call: Call<SignInData>, t: Throwable) {
+                                    val intent=Intent(this@SignUpActivity,SignInActivity::class.java)
+                                    startActivity(intent)
+                                }
+
+                                override fun onResponse(
+                                    call: Call<SignInData>,
+                                    response: Response<SignInData>
+                                ) {
+                                    if(response.isSuccessful){
+                                        val sharedPreferences=getSharedPreferences("account", Activity.MODE_PRIVATE);
+                                        val editor=sharedPreferences.edit()
+                                        editor.putString("id",email)
+                                        editor.putString("token",response.body()!!.token)
+                                        editor.apply()
+                                        val intent = Intent(this@SignUpActivity, IntroActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    }else{
+                                        Toast.makeText(this@SignUpActivity,"아이디 또는 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show()
+
+                                    }
+                                }
+
+                            })
+                        }else{
+                            Log.d("실패","실페")
+                        }
+
                     }
 
                     override fun onFailure(call: Call<SignUpData>, t: Throwable) {
