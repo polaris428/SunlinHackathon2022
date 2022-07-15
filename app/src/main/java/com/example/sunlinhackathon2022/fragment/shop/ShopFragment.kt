@@ -1,18 +1,23 @@
 package com.example.sunlinhackathon2022.fragment.shop
 
+import android.content.Context.MODE_PRIVATE
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.FragmentShopBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,26 +48,42 @@ class ShopFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentShopBinding.inflate(inflater, container, false)
+        var sharedPreferences=binding.root.context.getSharedPreferences("account",MODE_PRIVATE);
+        val id=sharedPreferences.getString("id","")
+        if (id==""){
+            binding.loginTextView.visibility=View.VISIBLE
+            binding.recyclerView.visibility=View.GONE
+            val str = "상점을 이용하시러면 \n 로그인 해주세요"
+            val ssb = SpannableStringBuilder(str)
+            ssb.setSpan(
+                ForegroundColorSpan(Color.parseColor("#0085ff")), 13, 16,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            binding.loginTextView.text=ssb
+        }else{
+            binding.loginTextView.visibility=View.GONE
+            binding.recyclerView.visibility=View.VISIBLE
+            val datas = arrayListOf<ShopData>()
+            var call = RetrofitClass.getApiService().getShop()
+            call.enqueue(object : Callback<ShopData> {
+                override fun onResponse(call: Call<ShopData>, response: Response<ShopData>) {
+                    response.body()?.let { datas.add(it) }
+                    var shopAdapter = ShopAdapter()
+                    binding.recyclerView.layoutManager = LinearLayoutManager(getActivity())
 
-        val datas = arrayListOf<ShopData>()
-        var call = RetrofitClass.getApiService().getShop()
-        call.enqueue(object : Callback<ShopData> {
-            override fun onResponse(call: Call<ShopData>, response: Response<ShopData>) {
-                response.body()?.let { datas.add(it) }
-                var shopAdapter = ShopAdapter()
-                binding.recyclerView.layoutManager = LinearLayoutManager(getActivity())
+                    binding.recyclerView.adapter = shopAdapter
+                    shopAdapter.listData = datas
+                    shopAdapter.notifyDataSetChanged()
 
-                binding.recyclerView.adapter = shopAdapter
-                shopAdapter.listData = datas
-                shopAdapter.notifyDataSetChanged()
+                }
 
-            }
+                override fun onFailure(call: Call<ShopData>, t: Throwable) {
+                    Log.d("실패", "실패")
+                }
 
-            override fun onFailure(call: Call<ShopData>, t: Throwable) {
-                Log.d("실패", "실패")
-            }
+            })
+        }
 
-        })
         return binding.root
     }
 
