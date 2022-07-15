@@ -10,9 +10,16 @@ import com.example.sunlinhackathon2022.databinding.ActivityMainBinding
 
 import com.example.sunlinhackathon2022.fragment.*
 import com.example.sunlinhackathon2022.fragment.home.HomeFragment
+import com.example.sunlinhackathon2022.fragment.illustratedbook.DictData
 import com.example.sunlinhackathon2022.fragment.illustratedbook.DictionaryFragment
+import com.example.sunlinhackathon2022.fragment.illustratedbook.ResultData
 import com.example.sunlinhackathon2022.fragment.shop.ShopFragment
+import com.example.sunlinhackathon2022.minigame.EndangeredCountMinigameActivity
+import com.example.sunlinhackathon2022.minigame.TigerTouchMinigameActivity
 import com.google.zxing.integration.android.IntentIntegrator
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     lateinit var integrator: IntentIntegrator
@@ -65,6 +72,11 @@ class MainActivity : AppCompatActivity() {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
         Log.d("TTT", "QR 코드 체크")
 
+        val sharedPreferences = getSharedPreferences("account", 0)
+
+        val token =sharedPreferences.getString("token","").toString()
+        Log.d("token",token)
+
         //결과가 있으면
         if (result != null) {
             // 컨텐츠가 없으면
@@ -79,10 +91,80 @@ class MainActivity : AppCompatActivity() {
                 Log.d("TTT", "QR 코드 URL:${result.contents}")
 
                 val checkList = arrayOf("1","2","3","4","5","6","7","8")
+                val qrAnimalIntent = Intent(this, AnimalDetailActivity::class.java)
+                val qrGameAnimalIntent1 = Intent(this, EndangeredCountMinigameActivity::class.java)
+                val qrGameAnimalIntent2 = Intent(this, TigerTouchMinigameActivity::class.java)
                 //유효 QR 검사
                 if(result.contents !in checkList) {
                     Toast.makeText(this, "유효하지 않은 QR코드입니다", Toast.LENGTH_LONG).show()
                 } else {
+                    val call1 = RetrofitClass.getApiService().getDictList(token)
+                    call1.enqueue(object : Callback<DictData> {
+                        override fun onResponse(
+                            call: Call<DictData>,
+                            response: Response<DictData>
+                        ) {
+                            if(response.isSuccessful) {
+                                if(result.contents.toInt() in response.body()!!.dict) { //있다
+                                    if(result.contents.toInt() in listOf(4,6,8)) { //게임대상
+                                        val rand = (0..1).random()
+                                        if(rand == 0) {
+                                            qrGameAnimalIntent1.putExtra("animalCode",result.contents)
+                                            startActivity(qrGameAnimalIntent1)
+                                        } else {
+                                            qrGameAnimalIntent2.putExtra("animalCode",result.contents)
+                                            startActivity(qrGameAnimalIntent2)
+                                        }
+                                    } else { //게임대상X
+                                        qrAnimalIntent.putExtra("animalCode", result.contents)
+                                        startActivity(qrAnimalIntent)
+                                    }
+                                } else { //포인트 추가
+                                    val call22 = RetrofitClass.getApiService().updateMyPoint(token, 100)
+                                    call22.enqueue(object : Callback<ResultData>{
+                                        override fun onResponse(
+                                            call: Call<ResultData>,
+                                            response: Response<ResultData>
+                                        ) {
+                                            if(response.isSuccessful) {
+                                                if(result.contents.toInt() in listOf(4,6,8)) { //게임대상
+                                                    val rand = (0..1).random()
+                                                    if(rand == 0) {
+                                                        qrGameAnimalIntent1.putExtra("animalCode",result.contents)
+                                                        startActivity(qrGameAnimalIntent1)
+                                                    } else {
+                                                        qrGameAnimalIntent2.putExtra("animalCode",result.contents)
+                                                        startActivity(qrGameAnimalIntent2)
+                                                    }
+                                                } else { //게임대상X
+                                                    qrAnimalIntent.putExtra("animalCode", result.contents)
+                                                    startActivity(qrAnimalIntent)
+                                                }
+                                            }
+                                        }
+
+                                        override fun onFailure(
+                                            call: Call<ResultData>,
+                                            t: Throwable
+                                        ) {
+                                            Log.d("main-call22","error")
+                                        }
+
+                                    })
+                                }
+                            }
+                        }
+
+                        override fun onFailure(call: Call<DictData>, t: Throwable) {
+                            Log.d("main-call1","error")
+                        }
+
+                    })
+
+
+
+
+
                     val qrAnimalIntent: Intent = Intent(this, AnimalDetailActivity::class.java)
                     qrAnimalIntent.putExtra("animalCode", result.contents)
                     startActivity(qrAnimalIntent)
