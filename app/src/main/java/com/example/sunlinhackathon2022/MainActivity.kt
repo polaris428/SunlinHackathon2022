@@ -161,13 +161,6 @@ class MainActivity : AppCompatActivity() {
 
                     })
 
-
-
-
-
-                    val qrAnimalIntent: Intent = Intent(this, AnimalDetailActivity::class.java)
-                    qrAnimalIntent.putExtra("animalCode", result.contents)
-                    startActivity(qrAnimalIntent)
                 }
 
                 //웹뷰 설정
