@@ -31,7 +31,8 @@ interface ApiService {
     @POST("auth/dict/{id}")
     fun addDict(@Header("x-access-token")token: String,@Path("id") id: Int ):Call<ResultData>
 
-
+    @POST("auth/point")
+    fun updateMyPoint(@Header("x-access-token")token: String, @Body point: Int):Call<ResultData>
 
 
 
