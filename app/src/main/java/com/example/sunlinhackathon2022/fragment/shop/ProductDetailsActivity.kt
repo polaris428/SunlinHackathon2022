@@ -77,6 +77,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                    intent.putExtra("photo",response.body()!!.photo)
                    intent.putExtra("description",description)
                    startActivity(intent)
+                   finish()
                }else{
                    Toast.makeText(this@ProductDetailsActivity,"잠시 후 다시 시도해주세요",Toast.LENGTH_SHORT).show()
                }
