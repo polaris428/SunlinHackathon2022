@@ -1,17 +1,26 @@
 package com.example.sunlinhackathon2022
 
 import android.content.Intent
+import android.graphics.Color.blue
+import android.graphics.Color.red
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
+import com.github.appintro.AppIntro2
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.AppIntroPageTransformerType
 
-class IntroActivity : AppIntro() {
+class IntroActivity : AppIntro2() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTransformer(AppIntroPageTransformerType.Fade)
+        isWizardMode = true
+        setImmersiveMode()
+        setIndicatorColor(
+            selectedIndicatorColor = getColor(R.color.purple_200),
+            unselectedIndicatorColor = getColor(R.color.black)
+        )
         setTransformer(
             AppIntroPageTransformerType.Parallax(
                 titleParallaxFactor = 1.0,
@@ -24,6 +33,7 @@ class IntroActivity : AppIntro() {
             AppIntroFragment.createInstance(
                 title = "QR코드를 찍으세요",
                 titleColorRes = R.color.black,
+                backgroundColorRes = R.color.gray,
                 description = "qr코드를 찍어 멸종 위기 동물을 알아봐요",
                 descriptionColorRes = R.color.black,
 
@@ -62,7 +72,8 @@ class IntroActivity : AppIntro() {
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
-        // Decide what to do when the user clicks on "Done"
+        var intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
         finish()
 
     }
