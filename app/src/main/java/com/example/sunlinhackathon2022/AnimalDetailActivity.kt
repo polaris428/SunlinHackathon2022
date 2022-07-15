@@ -30,7 +30,7 @@ class AnimalDetailActivity : AppCompatActivity() {
         )
 
         val animalARBaseUrl = "https://arvr.google.com/scene-viewer/web?file=https://storage.googleapis.com/ar-answers-in-search-models/static/"
-        val animalCode = intent.getStringExtra("animalCode")!!.toInt()
+        val animalCode = intent.getStringExtra("animalCode")!!.toInt() - 1
         val animalImageUrl: String = animalDataList[animalCode][2]
         val animalName: String = animalDataList[animalCode][0]
         val animalARUrl: String = animalDataList[animalCode][1]
