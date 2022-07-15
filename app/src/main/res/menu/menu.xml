@@ -19,7 +19,7 @@
         android:id="@+id/item_fragment3"
         android:enabled="true"
         android:title="프래그먼트3"
-        android:icon="@drawable/ic_loudspeaker"/>
+        android:icon="@drawable/ic_story"/>
     <item
         android:id="@+id/item_fragment4"
         android:enabled="true"
