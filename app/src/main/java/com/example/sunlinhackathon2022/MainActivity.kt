@@ -76,11 +76,19 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "scanned" + result.contents, Toast.LENGTH_LONG).show()
                 Log.d("TTT", "QR 코드 URL:${result.contents}")
 
+                val checkList = arrayOf("1","2","3","4","5","6","7","8")
+                //유효 QR 검사
+                if(result.contents !in checkList) {
+                    Toast.makeText(this, "유효하지 않은 QR코드입니다", Toast.LENGTH_LONG).show()
+                } else {
+                    val qrAnimalIntent: Intent = Intent(this, AnimalDetailActivity::class.java)
+                    qrAnimalIntent.putExtra("animalCode", result.contents)
+                    startActivity(qrAnimalIntent)
+                }
+
                 //웹뷰 설정
                 //웹뷰를 띄운다.
-                val qrAnimalIntent: Intent = Intent(this, AnimalDetailActivity::class.java)
-                qrAnimalIntent.putExtra("animalCode", result.contents)
-                startActivity(qrAnimalIntent)
+
 
             }
 
