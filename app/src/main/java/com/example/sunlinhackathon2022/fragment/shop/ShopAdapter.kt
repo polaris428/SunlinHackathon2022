@@ -27,7 +27,8 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
             binding.SecondTitle.text=shopItem.name2
             binding.firstTag.text=shopItem.category1
             binding.secondTag.text=shopItem.category2
-            binding.firstCost.text=shopItem.category2
+            binding.firstCost.text=shopItem.price1.toString()+"p"
+            binding.SecondCost.text=shopItem.price2.toString()+"p"
             Glide.with(binding.root).load(shopItem.photo1).centerCrop().into(binding.firstImage)
             Glide.with(binding.root).load(shopItem.photo2).centerCrop().into(binding.SecondImage)
 
