@@ -52,6 +52,31 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        val sharedPreferences = getSharedPreferences("account", 0)
+        val edit=sharedPreferences.edit()
+        val token =sharedPreferences.getString("token","").toString()
+        val test =sharedPreferences.getString("test","").toString()
+        val point =sharedPreferences.getInt("point",0)
+        Log.d("token",token)
+
+
+        val callee = RetrofitClass.getApiService().getDictList(token)
+        callee.enqueue(object : Callback<DictData> {
+            override fun onResponse(call: Call<DictData>, response: Response<DictData>) {
+                if(response.isSuccessful) {
+                    edit.putString("test",response.body()!!.dict.toString())//있다
+                    Log.d("response.body()!!.dict.toString()",response.body()!!.dict.toString())
+                    edit.apply()
+                }
+            }
+
+            override fun onFailure(call: Call<DictData>, t: Throwable) {
+
+            }
+
+        })
+
+
     }
 
     private fun replaceFragment(fragment: Fragment): Boolean {
@@ -80,6 +105,8 @@ class MainActivity : AppCompatActivity() {
         val test =sharedPreferences.getString("test","").toString()
         val point =sharedPreferences.getInt("point",0)
         Log.d("token",token)
+
+
 
         //결과가 있으면
         if (result != null) {

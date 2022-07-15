@@ -1,6 +1,8 @@
 package com.example.sunlinhackathon2022.fragment.home
 
+import android.opengl.Visibility
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +40,34 @@ class HomeFragment1 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHome1Binding.inflate(inflater, container, false)
+
+        val sharedPreferences = binding.root.context.getSharedPreferences("account", 0)
+
+        var viList =sharedPreferences.getString("test","").toString()
+        viList = viList.replace("[","")
+        viList = viList.replace("]","")
+        viList = viList.replace(",","")
+        val visualList = viList.split(" ")
+        for( x in visualList) {
+            when(x) {
+                "1" -> {
+                    binding.panda.visibility = View.VISIBLE
+                }
+                "2" -> {
+                    binding.raccoon.visibility = View.VISIBLE
+                }
+                "3" -> {
+                    binding.deer.visibility = View.VISIBLE
+                }
+                "8" -> {
+                    binding.tiger.visibility = View.VISIBLE
+                }
+                else -> {
+
+                }
+            }
+        }
+
         // Inflate the layout for this fragment
         return binding.root
     }

@@ -1,6 +1,7 @@
 package com.example.sunlinhackathon2022.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,7 @@ class HomeFragment2 : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -38,6 +40,35 @@ class HomeFragment2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHome2Binding.inflate(inflater, container, false)
+        val sharedPreferences = binding.root.context.getSharedPreferences("account", 0)
+
+        var viList =sharedPreferences.getString("test","").toString()
+        viList = viList.replace("[","")
+        viList = viList.replace("]","")
+        viList = viList.replace(",","")
+        val visualList = viList.split(" ")
+        Log.d("ddd",visualList.toString())
+        for( x in visualList) {
+            when(x) {
+                "4" -> {
+                    binding.wolf.visibility = View.VISIBLE
+                }
+                "5" -> {
+                    binding.shark.visibility = View.VISIBLE
+                }
+                "6" -> {
+                    binding.turtle.visibility = View.VISIBLE
+                }
+                "7" -> {
+                    binding.nile.visibility = View.VISIBLE
+                }
+                else -> {
+
+                }
+            }
+        }
+
+
         return binding.root
     }
 
