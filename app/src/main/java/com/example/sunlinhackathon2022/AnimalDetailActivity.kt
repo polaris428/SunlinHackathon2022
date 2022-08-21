@@ -1,6 +1,7 @@
 package com.example.sunlinhackathon2022
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -39,7 +40,7 @@ class AnimalDetailActivity : AppCompatActivity() {
             listOf("호랑이","Tiger/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400103532904449/tiger.jpg","동화책에 자주 등장하는 호랑이! 호랑이는 여러종류가 있어요. 하지만 여러 종류중 다섯 종류나 멸종했답니다. 이렇게 호랑이가 멸종한 이유는 무엇일까요? 호랑이가 살고 있는 곳이 파괴되거나, 사람들이 호랑이를 허락받지 않고 사냥해서 호랑이의 수가 많이 줄어들었어요. 특히나 아시아의 몇몇 나라에서는 호랑이는 부자의 상징이라서 많은 사냥이 일어나고 있어요. 호랑이를 지키기 위해서는 호랑이가 살고 있는 지역을 지켜줘야 해요.")
         )
 
-        val animalARBaseUrl = "https://arvr.google.com/scene-viewer/web?file=https://storage.googleapis.com/ar-answers-in-search-models/static/"
+        val animalARBaseUrl = "https://storage.googleapis.com/ar-answers-in-search-models/static/"
         val animalCode = intent.getStringExtra("animalCode")!!.toInt() - 1
         val animalImageUrl: String = animalDataList[animalCode][2]
         val animalName: String = animalDataList[animalCode][0]
@@ -55,9 +56,18 @@ class AnimalDetailActivity : AppCompatActivity() {
         binding.animalExplanation.text = animalDetail
 
         binding.payButton.setOnClickListener {
-            val ARIntent = Intent(this, ArWebViewActivity::class.java)
-            ARIntent.putExtra("arUrl",animalARBaseUrl+animalARUrl)
-            startActivity(ARIntent)
+//            val ARIntent = Intent(this, ArWebViewActivity::class.java)
+//            ARIntent.putExtra("arUrl",animalARBaseUrl+animalARUrl)
+//            startActivity(ARIntent)
+            val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+            val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                .appendQueryParameter("file",animalARBaseUrl+animalARUrl)
+                .appendQueryParameter("mode","ar_preferred")
+                .build()
+            sceneViewerIntent.data = intentUri
+            //sceneViewerIntent.`package` = "com.google.ar.core"
+            startActivity(sceneViewerIntent)
+
         }
 
         val getCall = RetrofitClass.getApiService().addDict(token, (animalCode+1).toString())
