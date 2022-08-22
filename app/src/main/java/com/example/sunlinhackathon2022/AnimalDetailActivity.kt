@@ -39,6 +39,17 @@ class AnimalDetailActivity : AppCompatActivity() {
             listOf("악어","Alligator/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400101838405722/nile.jpg","악어는 길이가 긴 동물로 가장 큰 악어는 4m를 넘어가요. 악어는 도마뱀처럼 꼬리를 자르면 다시 자라나요. 악어는 대부분 다른 동물들을 잡아먹어요. 바다에 사는 악어는 고래를 먹는 모습이 발견되기도 했다네요. 몇몇 종류의 악어들은 가죽을 얻기 위한 사람들의 사냥으로 인해 멸종위기에 처해있어요. 악어를 지키기 위해서는 사람들이 악어 가죽으로 만든 물건을 사지 말아야해요."),
             listOf("호랑이","Tiger/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400103532904449/tiger.jpg","동화책에 자주 등장하는 호랑이! 호랑이는 여러종류가 있어요. 하지만 여러 종류중 다섯 종류나 멸종했답니다. 이렇게 호랑이가 멸종한 이유는 무엇일까요? 호랑이가 살고 있는 곳이 파괴되거나, 사람들이 호랑이를 허락받지 않고 사냥해서 호랑이의 수가 많이 줄어들었어요. 특히나 아시아의 몇몇 나라에서는 호랑이는 부자의 상징이라서 많은 사냥이 일어나고 있어요. 호랑이를 지키기 위해서는 호랑이가 살고 있는 지역을 지켜줘야 해요.")
         )
+        val SoundUrlBase = "https://storage.googleapis.com/ar-answers-in-search-models/static/"
+        val animalSoundUrlList: List<String> = listOf(
+            "GiantPanda/GiantPanda.mp3",
+            "Raccoon/Raccoon.mp3",
+            "WhiteTailedDeer/WhiteTailedDeer.mp3",
+            "TimberWolf/TimberWolf.mp3",
+            "GreatWhiteShark/GreatWhiteShark.mp3",
+            "GreenSeaTurtle/GreenSeaTurtle.mp3",
+            "Alligator/Alligator.mp3",
+            "Tiger/Tiger.mp3"
+        )
 
         val animalARBaseUrl = "https://storage.googleapis.com/ar-answers-in-search-models/static/"
         val animalCode = intent.getStringExtra("animalCode")!!.toInt() - 1
@@ -46,6 +57,7 @@ class AnimalDetailActivity : AppCompatActivity() {
         val animalName: String = animalDataList[animalCode][0]
         val animalARUrl: String = animalDataList[animalCode][1]
         val animalDetail: String = animalDataList[animalCode][3]
+        val animalsound: String = SoundUrlBase + animalSoundUrlList[animalCode]
 
         Glide.with(this)
             .load(animalImageUrl)
@@ -63,6 +75,8 @@ class AnimalDetailActivity : AppCompatActivity() {
             val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
                 .appendQueryParameter("file",animalARBaseUrl+animalARUrl)
                 .appendQueryParameter("mode","ar_preferred")
+                .appendQueryParameter("sound",animalsound)
+                //.appendQueryParameter("mode","ar_preferred")
                 .build()
             sceneViewerIntent.data = intentUri
             //sceneViewerIntent.`package` = "com.google.ar.core"
