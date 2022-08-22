@@ -68,19 +68,32 @@ class AnimalDetailActivity : AppCompatActivity() {
         binding.animalExplanation.text = animalDetail
 
         binding.payButton.setOnClickListener {
-//            val ARIntent = Intent(this, ArWebViewActivity::class.java)
+            if(animalCode == 7) {
+                val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+                val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                    .appendQueryParameter("file",animalARBaseUrl+animalARUrl)
+                    .appendQueryParameter("mode","ar_preferred")
+                    .appendQueryParameter("sound",animalsound)
+                    //.appendQueryParameter("mode","ar_preferred")
+                    .build()
+                sceneViewerIntent.data = intentUri
+                //sceneViewerIntent.`package` = "com.google.ar.core"
+                startActivity(sceneViewerIntent)
+            } else {
+                val ARIntent = Intent(this, ArWebViewActivity::class.java)
 //            ARIntent.putExtra("arUrl",animalARBaseUrl+animalARUrl)
 //            startActivity(ARIntent)
-            val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
-            val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
-                .appendQueryParameter("file",animalARBaseUrl+animalARUrl)
-                .appendQueryParameter("mode","ar_preferred")
-                .appendQueryParameter("sound",animalsound)
-                //.appendQueryParameter("mode","ar_preferred")
-                .build()
-            sceneViewerIntent.data = intentUri
-            //sceneViewerIntent.`package` = "com.google.ar.core"
-            startActivity(sceneViewerIntent)
+                val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+                val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                    .appendQueryParameter("file",animalARBaseUrl+animalARUrl)
+                    .appendQueryParameter("mode","ar_preferred")
+                    //.appendQueryParameter("mode","ar_preferred")
+                    .build()
+                sceneViewerIntent.data = intentUri
+                //sceneViewerIntent.`package` = "com.google.ar.core"
+                startActivity(sceneViewerIntent)
+            }
+//
 
         }
 
