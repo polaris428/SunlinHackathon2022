@@ -41,13 +41,13 @@ class AnimalDetailActivity : AppCompatActivity() {
         )
         val SoundUrlBase = "https://storage.googleapis.com/ar-answers-in-search-models/static/"
         val animalSoundUrlList: List<String> = listOf(
-            "GiantPanda/GiantPanda.mp3",
-            "Raccoon/Raccoon.mp3",
-            "WhiteTailedDeer/WhiteTailedDeer.mp3",
-            "TimberWolf/TimberWolf.mp3",
-            "GreatWhiteShark/GreatWhiteShark.mp3",
-            "GreenSeaTurtle/GreenSeaTurtle.mp3",
-            "Alligator/Alligator.mp3",
+            "GiantPanda/Bear_Panda_Giant_Unisex_Adult.mp3",
+            "Raccoon/Raccoon_Common_Unisex_Adult.mp3",
+            "WhiteTailedDeer/Deer_WhiteTailed_Male_Adult.mp3",
+            "TimberWolf/Canine_Wolf_Timber_Unisex_Adult.mp3",
+            "GreatWhiteShark/Shark_GreatWhite_Unisex_Adult.mp3",
+            "GreenSeaTurtle/Turtle_GreenSea_Unisex_Adult.mp3",
+            "Alligator/Alligatar.mp3",
             "Tiger/Tiger.mp3"
         )
 
@@ -68,33 +68,17 @@ class AnimalDetailActivity : AppCompatActivity() {
         binding.animalExplanation.text = animalDetail
 
         binding.payButton.setOnClickListener {
-            if(animalCode == 7) {
+
+                val ARIntent = Intent(this, ArWebViewActivity::class.java)
                 val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
                 val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
                     .appendQueryParameter("file",animalARBaseUrl+animalARUrl)
                     .appendQueryParameter("mode","ar_preferred")
                     .appendQueryParameter("sound",animalsound)
-                    //.appendQueryParameter("mode","ar_preferred")
+                    .appendQueryParameter("title", animalName)
                     .build()
                 sceneViewerIntent.data = intentUri
-                //sceneViewerIntent.`package` = "com.google.ar.core"
                 startActivity(sceneViewerIntent)
-            } else {
-                val ARIntent = Intent(this, ArWebViewActivity::class.java)
-//            ARIntent.putExtra("arUrl",animalARBaseUrl+animalARUrl)
-//            startActivity(ARIntent)
-                val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
-                val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
-                    .appendQueryParameter("file",animalARBaseUrl+animalARUrl)
-                    .appendQueryParameter("mode","ar_preferred")
-                    //.appendQueryParameter("mode","ar_preferred")
-                    .build()
-                sceneViewerIntent.data = intentUri
-                //sceneViewerIntent.`package` = "com.google.ar.core"
-                startActivity(sceneViewerIntent)
-            }
-//
-
         }
 
         val getCall = RetrofitClass.getApiService().addDict(token, (animalCode+1).toString())
