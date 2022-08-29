@@ -1,6 +1,7 @@
 package com.example.sunlinhackathon2022
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -17,13 +18,37 @@ class StoryDetailActivity : AppCompatActivity() {
             finish()
         }
         val animalARBaseUrl = "https://arvr.google.com/scene-viewer/web?file=https://storage.googleapis.com/ar-answers-in-search-models/static/"
+        val SoundUrlBase = "https://storage.googleapis.com/ar-answers-in-search-models/static/"
+        val animalSoundUrlList: List<String> = listOf(
+            "GiantPanda/Bear_Panda_Giant_Unisex_Adult.mp3",
+            "Raccoon/Raccoon_Common_Unisex_Adult.mp3",
+            "WhiteTailedDeer/Deer_WhiteTailed_Male_Adult.mp3",
+            "TimberWolf/Canine_Wolf_Timber_Unisex_Adult.mp3",
+            "GreatWhiteShark/Shark_GreatWhite_Unisex_Adult.mp3",
+            "GreenSeaTurtle/Turtle_GreenSea_Unisex_Adult.mp3",
+            "Alligator/Alligatar.mp3",
+            "Tiger/Tiger.mp3"
+        )
         val animal = intent.getStringExtra("animal")
         when (animal) {
             "tiger" -> {
                 binding.arBtn.setOnClickListener {
+//                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+//                    ARIntent.putExtra("arUrl",animalARBaseUrl+"Tiger/model.glb")
+//                    startActivity(ARIntent)
+
                     val ARIntent = Intent(this, ArWebViewActivity::class.java)
-                    ARIntent.putExtra("arUrl",animalARBaseUrl+"Tiger/model.glb")
-                    startActivity(ARIntent)
+                    val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+                    val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                        .appendQueryParameter("file",animalARBaseUrl+"Tiger/model.glb")
+                        .appendQueryParameter("mode","ar_preferred")
+                        .appendQueryParameter("sound",SoundUrlBase+animalSoundUrlList[7])
+                        .appendQueryParameter("title", "호랑이")
+                        .build()
+                    sceneViewerIntent.data = intentUri
+                    startActivity(sceneViewerIntent)
+
+
                 }
                 binding.title.text = "호랑이의 이야기"
                 binding.animalName.text = "호랑이"
@@ -50,9 +75,20 @@ class StoryDetailActivity : AppCompatActivity() {
             }
             "wolf"->{
                 binding.arBtn.setOnClickListener {
+//                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+//                    ARIntent.putExtra("arUrl",animalARBaseUrl+"TimberWolf/model.glb")
+//                    startActivity(ARIntent)
+
                     val ARIntent = Intent(this, ArWebViewActivity::class.java)
-                    ARIntent.putExtra("arUrl",animalARBaseUrl+"TimberWolf/model.glb")
-                    startActivity(ARIntent)
+                    val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+                    val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                        .appendQueryParameter("file",animalARBaseUrl+"TimberWolf/model.glb")
+                        .appendQueryParameter("mode","ar_preferred")
+                        .appendQueryParameter("sound",SoundUrlBase+animalSoundUrlList[3])
+                        .appendQueryParameter("title", "늑대")
+                        .build()
+                    sceneViewerIntent.data = intentUri
+                    startActivity(sceneViewerIntent)
                 }
                 binding.title.text = "늑대의 이야기"
                 binding.animalName.text = "늑대"
@@ -77,9 +113,19 @@ class StoryDetailActivity : AppCompatActivity() {
 
             "tortoise"->{
                 binding.arBtn.setOnClickListener {
+//                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+//                    ARIntent.putExtra("arUrl",animalARBaseUrl+"GreenSeaTurtle/model.glb")
+//                    startActivity(ARIntent)
                     val ARIntent = Intent(this, ArWebViewActivity::class.java)
-                    ARIntent.putExtra("arUrl",animalARBaseUrl+"GreenSeaTurtle/model.glb")
-                    startActivity(ARIntent)
+                    val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+                    val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                        .appendQueryParameter("file",animalARBaseUrl+"GreenSeaTurtle/model.glb")
+                        .appendQueryParameter("mode","ar_preferred")
+                        .appendQueryParameter("sound",SoundUrlBase+animalSoundUrlList[5])
+                        .appendQueryParameter("title", "바다거북")
+                        .build()
+                    sceneViewerIntent.data = intentUri
+                    startActivity(sceneViewerIntent)
                 }
                 binding.title.text = "바다거북의 이야기"
                 binding.animalName.text = "바다거북"
@@ -103,9 +149,19 @@ class StoryDetailActivity : AppCompatActivity() {
             }
             "panda"->{
                 binding.arBtn.setOnClickListener {
+//                    val ARIntent = Intent(this, ArWebViewActivity::class.java)
+//                    ARIntent.putExtra("arUrl",animalARBaseUrl+"GiantPanda/model.glb")
+//                    startActivity(ARIntent)
                     val ARIntent = Intent(this, ArWebViewActivity::class.java)
-                    ARIntent.putExtra("arUrl",animalARBaseUrl+"GiantPanda/model.glb")
-                    startActivity(ARIntent)
+                    val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+                    val intentUri = Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+                        .appendQueryParameter("file",animalARBaseUrl+"GiantPanda/model.glb")
+                        .appendQueryParameter("mode","ar_preferred")
+                        .appendQueryParameter("sound",SoundUrlBase+animalSoundUrlList[0])
+                        .appendQueryParameter("title", "대왕판다")
+                        .build()
+                    sceneViewerIntent.data = intentUri
+                    startActivity(sceneViewerIntent)
                 }
                 binding.title.text = "판다의 이야기"
                 binding.animalName.text = "판다"
