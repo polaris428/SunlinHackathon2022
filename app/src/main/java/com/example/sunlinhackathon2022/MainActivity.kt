@@ -60,21 +60,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("token",token)
 
 
-        val callee = RetrofitClass.getApiService().getDictList(token)
-        callee.enqueue(object : Callback<DictData> {
-            override fun onResponse(call: Call<DictData>, response: Response<DictData>) {
-                if(response.isSuccessful) {
-                    edit.putString("test",response.body()!!.dict.toString())//있다
-                    Log.d("response.body()!!.dict.toString()",response.body()!!.dict.toString())
-                    edit.apply()
-                }
-            }
 
-            override fun onFailure(call: Call<DictData>, t: Throwable) {
-
-            }
-
-        })
 
 
     }
