@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="40dp"
-            android:paddingTop="56dp">
+            android:paddingVertical="40dp">
             <TextView
                 android:id="@+id/animalName"
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
                 android:id="@+id/animalExplanation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:text="안고 있으면 행복해질 수 있다"
                 android:layout_marginTop="10dp"
                 app:layout_constraintTop_toBottomOf="@id/animalName"
@@ -63,7 +63,6 @@
                 android:textSize="16sp"
                 android:padding="10dp"
                 android:backgroundTint="@color/purple_700"
-                android:layout_marginBottom="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
