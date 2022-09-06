@@ -17,7 +17,7 @@ class StoryDetailActivity : AppCompatActivity() {
         binding.back.setOnClickListener {
             finish()
         }
-        val animalARBaseUrl = "https://arvr.google.com/scene-viewer/web?file=https://storage.googleapis.com/ar-answers-in-search-models/static/"
+        val animalARBaseUrl = "https://storage.googleapis.com/ar-answers-in-search-models/static/"
         val SoundUrlBase = "https://storage.googleapis.com/ar-answers-in-search-models/static/"
         val animalSoundUrlList: List<String> = listOf(
             "GiantPanda/Bear_Panda_Giant_Unisex_Adult.mp3",

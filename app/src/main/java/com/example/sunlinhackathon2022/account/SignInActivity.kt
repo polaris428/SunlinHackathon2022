@@ -63,7 +63,7 @@ class SignInActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<SignInData>, t: Throwable) {
-                        Log.d("실패", "실패")
+                        Log.d("실패", t.message.toString())
                     }
 
                 })
