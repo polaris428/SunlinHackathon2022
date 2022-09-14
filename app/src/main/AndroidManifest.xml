@@ -17,12 +17,17 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".PandaGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TigerGameActivity"
+            android:exported="false" />
+        <activity
             android:name=".minigame.TurtleTouchActivity"
             android:exported="false" />
         <activity
             android:name=".minigame.EndangeredCountMinigameActivity"
             android:exported="false" />
-
         <activity
             android:name=".mypage.MyPageActivity"
             android:exported="true" />
