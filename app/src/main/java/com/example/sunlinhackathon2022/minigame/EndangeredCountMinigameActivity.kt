@@ -35,7 +35,7 @@ class EndangeredCountMinigameActivity : AppCompatActivity() {
                 val detailIntent = Intent(this, AnimalDetailActivity::class.java)
                 detailIntent.putExtra("animalCode",animalId)
                 startActivity(detailIntent)
-
+                finish()
 
 
             } else if(binding.inputCount.text.toString().toInt() < answer) {
