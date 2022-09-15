@@ -32,13 +32,9 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
         getToken()
         test(token)
-        val random = Random()
 
-        if(random.nextInt(1)==1){
-            binding.constraintLayout.setBackgroundResource(R.drawable.oceanback)
-        }else{
+        binding.constraintLayout.setBackgroundResource(R.drawable.oceanback)
 
-        }
         val handler = Handler()
         handler.postDelayed(Runnable {
 
