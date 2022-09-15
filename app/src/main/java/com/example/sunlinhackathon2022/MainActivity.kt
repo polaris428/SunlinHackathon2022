@@ -16,6 +16,8 @@ import com.example.sunlinhackathon2022.fragment.illustratedbook.DictionaryFragme
 import com.example.sunlinhackathon2022.fragment.illustratedbook.ResultData
 import com.example.sunlinhackathon2022.fragment.shop.ShopFragment
 import com.example.sunlinhackathon2022.minigame.EndangeredCountMinigameActivity
+import com.example.sunlinhackathon2022.minigame.PandaGameActivity
+import com.example.sunlinhackathon2022.minigame.TigerGameActivity
 import com.example.sunlinhackathon2022.minigame.TurtleTouchActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import retrofit2.Call
@@ -137,6 +139,14 @@ class MainActivity : AppCompatActivity() {
                                     } else if(result.contents.toInt() == 6) {
                                         qrGameAnimalIntent2.putExtra("animalCode",result.contents)
                                         startActivity(qrGameAnimalIntent2)
+                                    } else if(result.contents.toInt() == 1) {
+                                        val qrIntent = Intent(this@MainActivity, PandaGameActivity::class.java)
+                                        qrIntent.putExtra("animalCode", result.contents)
+                                        startActivity(qrIntent)
+                                    } else if (result.contents.toInt() == 8) {
+                                        val qrIntent = Intent(this@MainActivity, TigerGameActivity::class.java)
+                                        qrIntent.putExtra("animalCode", result.contents)
+                                        startActivity(qrIntent)
                                     } else { //게임대상X
                                         qrAnimalIntent.putExtra("animalCode", result.contents)
                                         startActivity(qrAnimalIntent)
