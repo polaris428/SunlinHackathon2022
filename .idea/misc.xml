@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SunlinHackathon2022/app/src/main/res/drawable/ic_resuce.xml" value="0.1955" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_barcode.xml" value="0.13640350877192983" />
+        <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_deer_game.xml" value="0.15789473684210525" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_endangered_count_minigame.xml" value="0.16096491228070176" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_gift.xml" value="0.21359649122807017" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_intro.xml" value="0.2463768115942029" />
@@ -11,11 +13,13 @@
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_my_page.xml" value="0.21359649122807017" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_panda_game.xml" value="0.16096491228070176" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_product_details.xml" value="0.144" />
+        <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_raccoon_game.xml" value="0.15789473684210525" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_sign_in.xml" value="0.2463768115942029" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_sign_in_main.xml" value="0.1609375" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_splash.xml" value="0.22826086956521738" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_tiger_game.xml" value="0.2" />
+        <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_turtle_touch.xml" value="0.15789473684210525" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/activity_welcome.xml" value="0.2463768115942029" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/fragment_blank.xml" value="0.22826086956521738" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/fragment_blank2.xml" value="0.22826086956521738" />

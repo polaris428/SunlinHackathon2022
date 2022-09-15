@@ -17,6 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".RaccoonGameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".minigame.DeerGameActivity"
+            android:exported="false" />
+        <activity
             android:name=".PandaGameActivity"
             android:exported="false" />
         <activity
