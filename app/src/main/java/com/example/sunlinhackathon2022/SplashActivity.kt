@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sunlinhackathon2022.account.SignInActivity
 import com.example.sunlinhackathon2022.databinding.ActivityMainBinding
 import com.example.sunlinhackathon2022.databinding.ActivitySplashBinding
 import com.example.sunlinhackathon2022.fragment.illustratedbook.DictData
@@ -18,13 +19,14 @@ import java.util.*
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
-    lateinit var token:String
-     val  sharedPreferences: SharedPreferences by lazy {
-         getSharedPreferences("account", 0)
-     }
+    lateinit var token: String
+    val sharedPreferences: SharedPreferences by lazy {
+        getSharedPreferences("account", 0)
+    }
     val edit by lazy {
         sharedPreferences.edit()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,40 +37,51 @@ class SplashActivity : AppCompatActivity() {
 
         binding.constraintLayout.setBackgroundResource(R.drawable.oceanback)
 
-        val handler = Handler()
-        handler.postDelayed(Runnable {
 
-            val intent=Intent(this,MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000)
 
     }
-    private fun getToken(){
+
+    private fun getToken() {
 
 
-            token =sharedPreferences.getString("token","").toString()
-            val test =sharedPreferences.getString("test","").toString()
-            val point =sharedPreferences.getInt("point",0)
-        if(token!=""){
+        token = sharedPreferences.getString("token", "").toString()
+        val test = sharedPreferences.getString("test", "").toString()
+        val point = sharedPreferences.getInt("point", 0)
+        if (token != "") {
             test(token)
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 3000)
+        }else{
+            val handler = Handler()
+            handler.postDelayed(Runnable {
+
+                val intent = Intent(this, SignInActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 3000)
         }
 
 
     }
-    fun test(token:String){
+
+    fun test(token: String) {
         val callee = RetrofitClass.getApiService().getDictList(token)
         callee.enqueue(object : Callback<DictData> {
             override fun onResponse(call: Call<DictData>, response: Response<DictData>) {
-                if(response.isSuccessful) {
-                    edit.putString("test",response.body()!!.dict.toString())//있다
-                    Log.d("Main",response.body().toString())
+                if (response.isSuccessful) {
+                    edit.putString("test", response.body()!!.dict.toString())//있다
+                    Log.d("Main", response.body().toString())
                     edit.apply()
                 }
             }
 
             override fun onFailure(call: Call<DictData>, t: Throwable) {
-                Log.e("Main",t.toString())
+                Log.e("Main", t.toString())
             }
 
         })
