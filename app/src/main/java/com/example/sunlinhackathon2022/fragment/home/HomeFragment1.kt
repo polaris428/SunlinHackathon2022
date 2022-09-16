@@ -1,5 +1,6 @@
 package com.example.sunlinhackathon2022.fragment.home
 
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.sunlinhackathon2022.AnimalDetailActivity
 import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.RetrofitClass
 import com.example.sunlinhackathon2022.databinding.FragmentCommunityBinding
@@ -57,15 +59,35 @@ class HomeFragment1 : Fragment() {
             when(x) {
                 "1" -> {
                     binding.panda.visibility = View.VISIBLE
+                    binding.panda.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","1");
+                        startActivity(goDetail)
+                    }
                 }
                 "2" -> {
                     binding.raccoon.visibility = View.VISIBLE
+                    binding.raccoon.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","2");
+                        startActivity(goDetail)
+                    }
                 }
                 "3" -> {
                     binding.deer.visibility = View.VISIBLE
+                    binding.deer.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","3");
+                        startActivity(goDetail)
+                    }
                 }
                 "8" -> {
                     binding.tiger.visibility = View.VISIBLE
+                    binding.tiger.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","8");
+                        startActivity(goDetail)
+                    }
                 }
                 else -> {
 

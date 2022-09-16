@@ -1,11 +1,13 @@
 package com.example.sunlinhackathon2022.fragment.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.sunlinhackathon2022.AnimalDetailActivity
 import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.databinding.FragmentHome1Binding
 import com.example.sunlinhackathon2022.databinding.FragmentHome2Binding
@@ -52,15 +54,35 @@ class HomeFragment2 : Fragment() {
             when(x) {
                 "4" -> {
                     binding.wolf.visibility = View.VISIBLE
+                    binding.wolf.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","4");
+                        startActivity(goDetail)
+                    }
                 }
                 "5" -> {
                     binding.shark.visibility = View.VISIBLE
+                    binding.shark.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","5");
+                        startActivity(goDetail)
+                    }
                 }
                 "6" -> {
                     binding.turtle.visibility = View.VISIBLE
+                    binding.turtle.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","6");
+                        startActivity(goDetail)
+                    }
                 }
                 "7" -> {
                     binding.nile.visibility = View.VISIBLE
+                    binding.nile.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","7");
+                        startActivity(goDetail)
+                    }
                 }
                 else -> {
 
