@@ -39,9 +39,9 @@ class EndangeredCountMinigameActivity : AppCompatActivity() {
 
 
             } else if(binding.inputCount.text.toString().toInt() < answer) {
-                Toast.makeText(this, "입력한 값보다 정답이 더 큽니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "입력한 값보다 정답이 더 크다.", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "입력한 값보다 정답이 더 작습니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "입력한 값보다 정답이 더 작다.", Toast.LENGTH_LONG).show()
             }
         }
     }
