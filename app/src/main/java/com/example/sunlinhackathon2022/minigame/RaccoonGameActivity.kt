@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.MotionEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sunlinhackathon2022.AnimalDetailActivity
+import com.example.sunlinhackathon2022.R
 import com.example.sunlinhackathon2022.databinding.ActivityRaccoonGameBinding
 
 class RaccoonGameActivity : AppCompatActivity() {
@@ -24,9 +26,6 @@ class RaccoonGameActivity : AppCompatActivity() {
             val curX = event.x
             val curY = event.y
             when (action) {
-                MotionEvent.ACTION_DOWN -> {
-                    println("손가락 눌렸음 : $curX,$curY")
-                }
                 MotionEvent.ACTION_MOVE -> {
                     if (!test) {
                         count++
@@ -34,20 +33,21 @@ class RaccoonGameActivity : AppCompatActivity() {
                         Handler().postDelayed({
                             test = false
                         }, 1000) // 0.6초 정도 딜레이를 준 후 시작
-
-
                     }
-                    if (count>=5){
-                        val animalId = intent.getStringExtra("animalCode")
-                        val detailIntent = Intent(this, AnimalDetailActivity::class.java)
-                        detailIntent.putExtra("animalCode",animalId)
-                        startActivity(detailIntent)
-                        finish()
+                    if (count == 4) {
+                        binding.imageView.setImageResource(R.drawable.raccoon_sad)
+                    } else if (count == 8) {
+                        binding.imageView.setImageResource(R.drawable.raccoon)
+                        binding.answerText.visibility = View.VISIBLE
+                        binding.examText.visibility = View.GONE
+                        Handler().postDelayed(Runnable {
+                            val animalId = intent.getStringExtra("animalCode")
+                            val detailIntent = Intent(this, AnimalDetailActivity::class.java)
+                            detailIntent.putExtra("animalCode", animalId)
+                            startActivity(detailIntent)
+                            finish()
+                        }, 2500)
                     }
-                    println("손가락 움직임 : $curX,$curY")
-                }
-                MotionEvent.ACTION_UP -> {
-                    println("손가락 뗴졌음 : $curX,$curY")
                 }
             }
             true
