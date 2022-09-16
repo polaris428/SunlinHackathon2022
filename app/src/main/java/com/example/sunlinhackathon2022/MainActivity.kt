@@ -15,10 +15,7 @@ import com.example.sunlinhackathon2022.fragment.illustratedbook.DictData
 import com.example.sunlinhackathon2022.fragment.illustratedbook.DictionaryFragment
 import com.example.sunlinhackathon2022.fragment.illustratedbook.ResultData
 import com.example.sunlinhackathon2022.fragment.shop.ShopFragment
-import com.example.sunlinhackathon2022.minigame.EndangeredCountMinigameActivity
-import com.example.sunlinhackathon2022.minigame.PandaGameActivity
-import com.example.sunlinhackathon2022.minigame.TigerGameActivity
-import com.example.sunlinhackathon2022.minigame.TurtleTouchActivity
+import com.example.sunlinhackathon2022.minigame.*
 import com.google.zxing.integration.android.IntentIntegrator
 import retrofit2.Call
 import retrofit2.Callback
@@ -126,6 +123,7 @@ class MainActivity : AppCompatActivity() {
                             response: Response<DictData>
                         ) {
                             if(response.isSuccessful) {
+                                Log.d("TTT", "QR 코드 URL:${result.contents}")
                                 edit.putInt("point",point+10000)
 
                                 edit.apply()
@@ -145,6 +143,14 @@ class MainActivity : AppCompatActivity() {
                                         startActivity(qrIntent)
                                     } else if (result.contents.toInt() == 8) {
                                         val qrIntent = Intent(this@MainActivity, TigerGameActivity::class.java)
+                                        qrIntent.putExtra("animalCode", result.contents)
+                                        startActivity(qrIntent)
+                                    } else if (result.contents.toInt() == 2) {
+                                        val qrIntent = Intent(this@MainActivity, RaccoonGameActivity::class.java)
+                                        qrIntent.putExtra("animalCode", result.contents)
+                                        startActivity(qrIntent)
+                                    } else if (result.contents.toInt() == 3) {
+                                        val qrIntent = Intent(this@MainActivity, DeerGameActivity::class.java)
                                         qrIntent.putExtra("animalCode", result.contents)
                                         startActivity(qrIntent)
                                     } else { //게임대상X
