@@ -26,6 +26,9 @@ class RaccoonGameActivity : AppCompatActivity() {
             val curX = event.x
             val curY = event.y
             when (action) {
+                MotionEvent.ACTION_DOWN -> {
+                    println("손가락 눌렸음 : $curX,$curY")
+                }
                 MotionEvent.ACTION_MOVE -> {
                     if (!test) {
                         count++
@@ -40,7 +43,8 @@ class RaccoonGameActivity : AppCompatActivity() {
                         binding.imageView.setImageResource(R.drawable.raccoon)
                         binding.answerText.visibility = View.VISIBLE
                         binding.examText.visibility = View.GONE
-                        Handler().postDelayed(Runnable {
+                        val handler = Handler()
+                        handler.postDelayed(Runnable {
                             val animalId = intent.getStringExtra("animalCode")
                             val detailIntent = Intent(this, AnimalDetailActivity::class.java)
                             detailIntent.putExtra("animalCode", animalId)
@@ -48,6 +52,10 @@ class RaccoonGameActivity : AppCompatActivity() {
                             finish()
                         }, 2500)
                     }
+                    println("손가락 움직임 : $curX,$curY")
+                }
+                MotionEvent.ACTION_UP -> {
+                    println("손가락 뗴졌음 : $curX,$curY")
                 }
             }
             true
