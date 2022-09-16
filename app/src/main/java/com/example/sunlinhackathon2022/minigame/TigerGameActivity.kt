@@ -3,6 +3,8 @@ package com.example.sunlinhackathon2022.minigame
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.viewbinding.ViewBinding
@@ -23,15 +25,19 @@ class TigerGameActivity : AppCompatActivity() {
     private fun click(button: Button) {
         button.setOnClickListener {
             if (button.text == "O") {
-                Toast.makeText(this,"정딥입니다",Toast.LENGTH_SHORT).show()
-                val animalId = intent.getStringExtra("animalCode")
-                val detailIntent = Intent(this, AnimalDetailActivity::class.java)
-                detailIntent.putExtra("animalCode",animalId)
-                startActivity(detailIntent)
-                finish()
-
+                binding.tv1.visibility = View.GONE
+                binding.tv2.visibility = View.VISIBLE
+                binding.btnLayout.visibility = View.GONE
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    val animalId = intent.getStringExtra("animalCode")
+                    val detailIntent = Intent(this, AnimalDetailActivity::class.java)
+                    detailIntent.putExtra("animalCode", animalId)
+                    startActivity(detailIntent)
+                    finish()
+                }, 3000)
             } else {
-                Toast.makeText(this,"다시 한번 시도해주세요",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"다시 한번 생각해봐라, 어흥",Toast.LENGTH_SHORT).show()
             }
         }
 
