@@ -17,6 +17,7 @@ class DeerGameActivity : AppCompatActivity() {
             val detailIntent = Intent(this, AnimalDetailActivity::class.java)
             detailIntent.putExtra("animalCode",animalId)
             startActivity(detailIntent)
+            finish()
         }
     }
 }

@@ -42,6 +42,7 @@ class RaccoonGameActivity : AppCompatActivity() {
                         val detailIntent = Intent(this, AnimalDetailActivity::class.java)
                         detailIntent.putExtra("animalCode",animalId)
                         startActivity(detailIntent)
+                        finish()
                     }
                     println("손가락 움직임 : $curX,$curY")
                 }

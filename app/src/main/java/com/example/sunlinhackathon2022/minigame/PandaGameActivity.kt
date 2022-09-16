@@ -26,6 +26,7 @@ class PandaGameActivity : AppCompatActivity() {
                 val detailIntent = Intent(this, AnimalDetailActivity::class.java)
                 detailIntent.putExtra("animalCode",animalId)
                 startActivity(detailIntent)
+                finish()
 
             } else {
                 Toast.makeText(this,"다시 한번 시도해주세요", Toast.LENGTH_SHORT).show()
