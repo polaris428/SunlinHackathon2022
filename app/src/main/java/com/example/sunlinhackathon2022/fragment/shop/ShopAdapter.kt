@@ -43,10 +43,10 @@ class ShopAdapter : RecyclerView.Adapter<ShopAdapter.Holder>() {
             }
             binding.goods2.setOnClickListener {
                 var intent=Intent(binding.root.context,ProductDetailsActivity::class.java)
-                intent.putExtra("name",shopItem.name1)
-                intent.putExtra("tag",shopItem.category1)
-                intent.putExtra("photo",shopItem.photo1)
-                intent.putExtra("description",shopItem.description1)
+                intent.putExtra("name",shopItem.name2)
+                intent.putExtra("tag",shopItem.category2)
+                intent.putExtra("photo",shopItem.photo2)
+                intent.putExtra("description",shopItem.description2)
                 intent.putExtra("price",shopItem.price2)
                 binding.root.context.startActivity(intent)
             }
