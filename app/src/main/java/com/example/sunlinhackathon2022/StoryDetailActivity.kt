@@ -59,8 +59,8 @@ class StoryDetailActivity : AppCompatActivity() {
 요즘 고민이 하나 생겼어ㅠ...
 점점 친구 호랑이들이 어디 갔는지 안보이더라고.
 근데 내 친구 호랑이들만 그런 게 아니더라.
-저 옆에 내 친척 뱅골호랑이는
-10가족밖에 남지 않았데.
+저 옆에 내 친척 벵골호랑이는
+10가족밖에 남지 않았대.
 
 나도 곧 사라지는 걸까?"""
                 binding.text2.text = "호랑이를 살리려면?"
@@ -96,7 +96,7 @@ class StoryDetailActivity : AppCompatActivity() {
                 binding.animalInfo.text = """..안녕
 나는 늑대다.
 
-최근 내 반려자..아내가 하늘나라로 떠났지...
+최근 내 반려자... 아내가 하늘나라로 떠났지...
 먼저 떠난 아내를 위해서라도 남은 아이들은
 지켜내야 해.
 
@@ -137,7 +137,7 @@ class StoryDetailActivity : AppCompatActivity() {
 놀러 가는 게 쉽지 않아.
 다른 친구들은 쓰레기들 때문에 다친 적도 있어.
 
-해엄칠 때마다 다치게 될까 무서워.."""
+해엄칠 때마다 다치게 될까 무서워..."""
                 binding.text2.text = "거북이를 살리려면?"
                 binding.animalHelp.text = """너무 바다에 쓰레기가 많은 것이 가장 큰 문제야.
 우리가 헤엄치는 바다에 들어오는 쓰레기를 
