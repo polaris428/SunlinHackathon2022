@@ -32,10 +32,13 @@ class PandaGameActivity : AppCompatActivity() {
                     val animalId = intent.getStringExtra("animalCode")
                     val detailIntent = Intent(this, AnimalDetailActivity::class.java)
                     detailIntent.putExtra("animalCode", animalId)
+                    //detailIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    //finishAffinity()
+                    detailIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(detailIntent)
                     finish()
                 }, 3000)
-
+                
             } else {
                 Toast.makeText(this, "다시 한번 생각해봐라, 판다", Toast.LENGTH_SHORT).show()
             }

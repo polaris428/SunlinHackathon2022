@@ -36,6 +36,9 @@ class TurtleTouchActivity : AppCompatActivity() {
                     val animalId = intent.getStringExtra("animalCode")
                     val detailIntent = Intent(this, AnimalDetailActivity::class.java)
                     detailIntent.putExtra("animalCode",animalId)
+                    //detailIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    //finishAffinity()
+                    detailIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(detailIntent)
                     finish()
                 }, 3000)

@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             else {
                 //토스트를 띄운다.
 
-                Log.d("TTT", "QR 코드 URL:${result.contents}")
+                Log.d("TTT1", "QR 코드 URL:${result.contents}")
 
 
 
@@ -122,8 +122,9 @@ class MainActivity : AppCompatActivity() {
                             call: Call<DictData>,
                             response: Response<DictData>
                         ) {
+                            Log.d("TTT3",response.code().toString())
                             if(response.isSuccessful) {
-                                Log.d("TTT", "QR 코드 URL:${result.contents}")
+                                Log.d("TTT2", "QR 코드 URL:${result.contents}")
                                 edit.putInt("point",point+10000)
 
                                 edit.apply()
@@ -136,6 +137,7 @@ class MainActivity : AppCompatActivity() {
                                         startActivity(qrGameAnimalIntent1)
                                     } else if(result.contents.toInt() == 6) {
                                         qrGameAnimalIntent2.putExtra("animalCode",result.contents)
+                                        Log.d("<main debug>","6")
                                         startActivity(qrGameAnimalIntent2)
                                     } else if(result.contents.toInt() == 1) {
                                         val qrIntent = Intent(this@MainActivity, PandaGameActivity::class.java)
