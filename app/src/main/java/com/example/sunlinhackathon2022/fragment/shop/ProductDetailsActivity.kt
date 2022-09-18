@@ -32,8 +32,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         val sharedPreferences = getSharedPreferences("account", 0)
         val edit=sharedPreferences.edit()
-        var point:Int=sharedPreferences.getInt("point",0)
-        point=1000000
+        val point:Int=sharedPreferences.getInt("point",0)
          token =sharedPreferences.getString("token","").toString()
         Log.d("token",token)
         val intent:Intent= intent
