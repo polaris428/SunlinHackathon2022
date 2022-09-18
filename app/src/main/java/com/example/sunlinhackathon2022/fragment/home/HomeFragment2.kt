@@ -43,8 +43,8 @@ class HomeFragment2 : Fragment() {
     ): View? {
         binding = FragmentHome2Binding.inflate(inflater, container, false)
         val sharedPreferences = binding.root.context.getSharedPreferences("account", 0)
-
-        var viList =sharedPreferences.getString("test","").toString()
+        flow()
+            var viList =sharedPreferences.getString("test","").toString()
         viList = viList.replace("[","")
         viList = viList.replace("]","")
         viList = viList.replace(",","")
@@ -162,6 +162,13 @@ class HomeFragment2 : Fragment() {
 
                 }
             }
+        }
+    }
+    private fun flow(){
+        val sharedPreferences = binding.root.context.getSharedPreferences("flow", 0)
+        sharedPreferences.getBoolean("flow",false)
+        if( sharedPreferences.getBoolean("flow",false)){
+            binding.flowImageView.visibility=View.VISIBLE
         }
     }
 }

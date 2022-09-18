@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_2"
     tools:context=".fragment.home.HomeFragment2">
-
+    <ImageView
+        android:id="@+id/flowImageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/flowers"/>
     <ImageView
         android:id="@+id/shark"
         android:layout_width="200dp"

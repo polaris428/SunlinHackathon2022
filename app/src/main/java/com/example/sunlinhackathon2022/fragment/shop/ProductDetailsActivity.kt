@@ -1,16 +1,16 @@
 package com.example.sunlinhackathon2022.fragment.shop
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.sunlinhackathon2022.BarcodeActivity
-import com.example.sunlinhackathon2022.R
-import com.example.sunlinhackathon2022.RetrofitClass
-import com.example.sunlinhackathon2022.Token
+import com.example.sunlinhackathon2022.*
 import com.example.sunlinhackathon2022.databinding.ActivityProductDetailsBinding
+import com.example.sunlinhackathon2022.fragment.illustratedbook.ResultData
 
 import com.example.sunlinhackathon2022.fragment.shop.purchase.Barcode
 import com.example.sunlinhackathon2022.fragment.shop.purchase.Buy
@@ -22,6 +22,8 @@ import retrofit2.Response
 class ProductDetailsActivity : AppCompatActivity() {
     lateinit var  binding: ActivityProductDetailsBinding
     lateinit  var description:String
+    lateinit var name:String
+    lateinit var token:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,10 +31,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         val sharedPreferences = getSharedPreferences("account", 0)
         val edit=sharedPreferences.edit()
-        val point:Int=sharedPreferences.getInt("point",0)
-        val token =sharedPreferences.getString("token","").toString()
-        val intent:Intent= getIntent()
-        val name=intent.getStringExtra("name").toString()
+        var point:Int=sharedPreferences.getInt("point",0)
+        point=1000000
+         token =sharedPreferences.getString("token","").toString()
+        Log.d("token",token)
+        val intent:Intent= intent
+         name=intent.getStringExtra("name").toString()
         val photo=intent.getStringExtra("photo").toString()
          description=intent.getStringExtra("description").toString()
 
@@ -49,7 +53,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                     .setPositiveButton("확인") { dialog, which ->
                         edit.putInt("point",point-price)
                         edit.apply()
-                        barcode(token,Buy(name,price,photo))
+                        category()
                     }
                     .show()
 
@@ -67,29 +71,79 @@ class ProductDetailsActivity : AppCompatActivity() {
         binding.productTag.text=intent.getStringExtra("tag").toString()
         Glide.with(this).load(photo).centerCrop().into(binding.productImageView)
     }
-    fun barcode(token:String,buy: Buy){
-        val call=RetrofitClass.getApiService().setBarcode(token,buy)
-        call.enqueue(object:Callback<Barcode>{
-            override fun onResponse(call: Call<Barcode>, response: Response<Barcode>) {
-               if(response.isSuccessful){
-                   var intent=Intent(this@ProductDetailsActivity,BarcodeActivity::class.java)
-                   intent.putExtra("barcode",response.body()!!.barcode)
-                   intent.putExtra("name",response.body()!!.name)
-                   intent.putExtra("photo",response.body()!!.photo)
-                   intent.putExtra("description",description)
-                   startActivity(intent)
-                   finish()
-               }else{
-                   Toast.makeText(this@ProductDetailsActivity,"잠시 후 다시 시도해주세요",Toast.LENGTH_SHORT).show()
-               }
+//    fun barcode(token:String,buy: Buy){
+//        val call=RetrofitClass.getApiService().setBarcode(token,buy)
+//        call.enqueue(object:Callback<Barcode>{
+//            override fun onResponse(call: Call<Barcode>, response: Response<Barcode>) {
+//               if(response.isSuccessful){
+//                   var intent=Intent(this@ProductDetailsActivity,MainActivity::class.java)
+//                   intent.putExtra("barcode",response.body()!!.barcode)
+//                   intent.putExtra("name",response.body()!!.name)
+//                   intent.putExtra("photo",response.body()!!.photo)
+//                   intent.putExtra("description",description)
+//                   startActivity(intent)
+//                   finish()
+//               }else{
+//                   Toast.makeText(this@ProductDetailsActivity,"잠시 후 다시 시도해주세요",Toast.LENGTH_SHORT).show()
+//               }
+//            }
+//
+//            override fun onFailure(call: Call<Barcode>, t: Throwable) {
+//                Toast.makeText(this@ProductDetailsActivity,"잠시 후 다시 시도해주세요",Toast.LENGTH_SHORT).show()
+//            }
+//
+//        })
+//}
+
+
+
+
+    private fun category(){
+        when(name){
+            "악어"->{
+                binding.progressBar.visibility= View.VISIBLE
+                binding.payButton.visibility=View.GONE
+                addAnimals(7)
+            }
+            "상어"->{
+                binding.progressBar.visibility= View.VISIBLE
+                binding.payButton.visibility=View.GONE
+                addAnimals(5)
+            }
+            "꽃 장식1", "꽃 장식2"->{
+                val sharedPreferences = binding.root.context.getSharedPreferences("flow", 0)
+                val preferencesEditor: SharedPreferences.Editor = sharedPreferences.edit()
+                preferencesEditor.putBoolean("flow",true)
+                preferencesEditor.apply()
+                startActivity(Intent(this@ProductDetailsActivity,MainActivity::class.java))
+                finish()
             }
 
-            override fun onFailure(call: Call<Barcode>, t: Throwable) {
-                Toast.makeText(this@ProductDetailsActivity,"잠시 후 다시 시도해주세요",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun addAnimals(code:Int){
+        val getCall = RetrofitClass.getApiService().addDict(token, (code).toString())
+        getCall.enqueue(object : Callback<ResultData> {
+            override fun onResponse(
+                call: Call<ResultData>,
+                response: Response<ResultData>
+            ) {
+                if(response.isSuccessful) {
+                    startActivity(Intent(this@ProductDetailsActivity,MainActivity::class.java))
+                    finish()
+                }else{
+                    Log.d("test",response.code().toString())
+                    Toast.makeText(binding.root.context,"잠시후 다시 시도해주세요",Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ResultData>, t: Throwable) {
+                Toast.makeText(binding.root.context,"잠시후 다시 시도해주세요",Toast.LENGTH_SHORT).show()
             }
 
         })
-
-
     }
+
+
 }

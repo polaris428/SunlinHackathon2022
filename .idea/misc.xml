@@ -29,20 +29,17 @@
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/fragment_dictionary.xml" value="0.2" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/fragment_home.xml" value="0.12239583333333333" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/fragment_home1.xml" value="0.1570175438596491" />
+        <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/fragment_home2.xml" value="0.17894736842105263" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/fragment_shop.xml" value="0.23802083333333332" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/item_barcode_list.xml" value="0.13596491228070176" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/item_dictionary.xml" value="0.10394736842105264" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/item_illustratedbook.xml" value="0.10570175438596491" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/layout/item_shop.xml" value="0.4" />
         <entry key="..\:/SunlinHackathon2022/app/src/main/res/menu/menu.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/drawable/ic_back.xml" value="0.1695" />
         <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_deer_game.xml" value="0.22864583333333333" />
         <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_endangered_count_minigame.xml" value="0.22864583333333333" />
         <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_panda_game.xml" value="0.264" />
         <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_raccoon_game.xml" value="0.22864583333333333" />
-        <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_sign_in.xml" value="0.16041666666666668" />
-        <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_sign_up.xml" value="0.3756786102062975" />
-        <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_splash.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_story_detail.xml" value="0.21240942028985507" />
         <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_tiger_game.xml" value="0.22864583333333333" />
         <entry key="..\:/Users/jungi/AndroidStudioProjects/SunlinHackathon2022/app/src/main/res/layout/activity_turtle_touch.xml" value="0.22864583333333333" />
