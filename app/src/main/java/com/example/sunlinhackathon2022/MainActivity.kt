@@ -98,7 +98,6 @@ class MainActivity : AppCompatActivity() {
             // 컨텐츠가 없으면
             if (result.contents == null) {
                 //토스트를 띄운다.
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             }
             // 컨텐츠가 있으면
             else {
