@@ -28,7 +28,7 @@ class AnimalDetailActivity : AppCompatActivity() {
 
         //back code
         binding.back.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
         val animalDataList: List<List<String>> = listOf( // 0 이름 1 ar 2 이미지 3 디테일
             listOf("대왕판다","GiantPanda/model.glb","https://cdn.discordapp.com/attachments/997399980765618177/997400102853414972/panda.jpg","대왕판다는 주로 중국에서 사는 동물이에요. 주로 대나무를 먹는답니다. 대왕판다는 사람들이 판다가 사는곳을 파괴하거나, 허락 없이 몰래 사냥해서 멸종위기동물이 되었어요 그럼 우리는 대왕판다를 보존하기 위해서 어떤 노력이 필요할까요? 바로 판다에 대한 끊임없는 관심이 판다를 살릴 수 있어요. 지금도 세계 여러나라에서 판다에 관심을 갖게 하기 위해서 다양한 축제나 행사가 진행되고 있어요."),
