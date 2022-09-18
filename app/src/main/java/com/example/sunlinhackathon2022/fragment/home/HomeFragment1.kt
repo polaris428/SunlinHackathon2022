@@ -99,6 +99,58 @@ class HomeFragment1 : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        val sharedPreferences = binding.root.context.getSharedPreferences("account", 0)
+
+        var viList =sharedPreferences.getString("test","").toString()
+        viList = viList.replace("[","")
+        viList = viList.replace("]","")
+        viList = viList.replace(",","")
+        val visualList = viList.split(" ")
+        for( x in visualList) {
+            when(x) {
+                "1" -> {
+                    binding.panda.visibility = View.VISIBLE
+                    binding.panda.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","1");
+                        startActivity(goDetail)
+                    }
+                }
+                "2" -> {
+                    binding.raccoon.visibility = View.VISIBLE
+                    binding.raccoon.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","2");
+                        startActivity(goDetail)
+                    }
+                }
+                "3" -> {
+                    binding.deer.visibility = View.VISIBLE
+                    binding.deer.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","3");
+                        startActivity(goDetail)
+                    }
+                }
+                "8" -> {
+                    binding.tiger.visibility = View.VISIBLE
+                    binding.tiger.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","8");
+                        startActivity(goDetail)
+                    }
+                }
+                else -> {
+
+                }
+            }
+        }
+
+    }
+
 
 
 }

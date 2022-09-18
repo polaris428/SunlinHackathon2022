@@ -113,4 +113,55 @@ class HomeFragment2 : Fragment() {
                 }
             }
     }
+
+    override fun onStart() {
+        super.onStart()
+        val sharedPreferences = binding.root.context.getSharedPreferences("account", 0)
+
+        var viList =sharedPreferences.getString("test","").toString()
+        viList = viList.replace("[","")
+        viList = viList.replace("]","")
+        viList = viList.replace(",","")
+        val visualList = viList.split(" ")
+        Log.d("ddd",visualList.toString())
+        for( x in visualList) {
+            when(x) {
+                "4" -> {
+                    binding.wolf.visibility = View.VISIBLE
+                    binding.wolf.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","4");
+                        startActivity(goDetail)
+                    }
+                }
+                "5" -> {
+                    binding.shark.visibility = View.VISIBLE
+                    binding.shark.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","5");
+                        startActivity(goDetail)
+                    }
+                }
+                "6" -> {
+                    binding.turtle.visibility = View.VISIBLE
+                    binding.turtle.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","6");
+                        startActivity(goDetail)
+                    }
+                }
+                "7" -> {
+                    binding.nile.visibility = View.VISIBLE
+                    binding.nile.setOnClickListener {
+                        val goDetail = Intent(binding.root.context, AnimalDetailActivity::class.java)
+                        goDetail.putExtra("animalCode","7");
+                        startActivity(goDetail)
+                    }
+                }
+                else -> {
+
+                }
+            }
+        }
+    }
 }
