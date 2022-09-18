@@ -39,21 +39,22 @@ class RaccoonGameActivity : AppCompatActivity() {
                     }
                     if (count == 4) {
                         binding.imageView.setImageResource(R.drawable.raccoon_sad)
-                    } else if (count == 8) {
+                    } else if (count == 8){
                         binding.imageView.setImageResource(R.drawable.raccoon)
                         binding.answerText.visibility = View.VISIBLE
                         binding.examText.visibility = View.GONE
+                        count++
                         val handler = Handler()
                         handler.postDelayed(Runnable {
                             val animalId = intent.getStringExtra("animalCode")
                             val detailIntent = Intent(this, AnimalDetailActivity::class.java)
-                            detailIntent.putExtra("animalCode", animalId)
+                            detailIntent.putExtra("animalCode",animalId)
                             //detailIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             //finishAffinity()
                             detailIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                             startActivity(detailIntent)
                             finish()
-                        }, 2500)
+                        }, 3000)
                     }
                     println("손가락 움직임 : $curX,$curY")
                 }
