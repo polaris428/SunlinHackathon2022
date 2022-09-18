@@ -39,9 +39,9 @@ class MyPageActivity : AppCompatActivity() {
                     var barcodeAdapter = BarcodeAdapter()
                     var datas = arrayListOf<Barcode>()
                     datas=response.body()!!.barcode
-                        binding.recyclerView.layoutManager = LinearLayoutManager(this@MyPageActivity)
+                     //   binding.recyclerView.layoutManager = LinearLayoutManager(this@MyPageActivity)
 
-                    binding.recyclerView.adapter = barcodeAdapter
+                    //binding.recyclerView.adapter = barcodeAdapter
                     barcodeAdapter.listData =datas
                     barcodeAdapter.notifyDataSetChanged()
                     binding.lottieView.visibility= View.GONE
