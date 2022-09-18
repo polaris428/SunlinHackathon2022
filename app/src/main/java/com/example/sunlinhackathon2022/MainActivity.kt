@@ -171,7 +171,24 @@ class MainActivity : AppCompatActivity() {
                                                     startActivity(qrGameAnimalIntent1)
                                                 } else if(result.contents.toInt() == 6) {
                                                     qrGameAnimalIntent2.putExtra("animalCode",result.contents)
+                                                    Log.d("<main debug>","6")
                                                     startActivity(qrGameAnimalIntent2)
+                                                } else if(result.contents.toInt() == 1) {
+                                                    val qrIntent = Intent(this@MainActivity, PandaGameActivity::class.java)
+                                                    qrIntent.putExtra("animalCode", result.contents)
+                                                    startActivity(qrIntent)
+                                                } else if (result.contents.toInt() == 8) {
+                                                    val qrIntent = Intent(this@MainActivity, TigerGameActivity::class.java)
+                                                    qrIntent.putExtra("animalCode", result.contents)
+                                                    startActivity(qrIntent)
+                                                } else if (result.contents.toInt() == 2) {
+                                                    val qrIntent = Intent(this@MainActivity, RaccoonGameActivity::class.java)
+                                                    qrIntent.putExtra("animalCode", result.contents)
+                                                    startActivity(qrIntent)
+                                                } else if (result.contents.toInt() == 3) {
+                                                    val qrIntent = Intent(this@MainActivity, DeerGameActivity::class.java)
+                                                    qrIntent.putExtra("animalCode", result.contents)
+                                                    startActivity(qrIntent)
                                                 } else { //게임대상X
                                                     qrAnimalIntent.putExtra("animalCode", result.contents)
                                                     startActivity(qrAnimalIntent)

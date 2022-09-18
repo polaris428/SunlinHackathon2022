@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.sunlinhackathon2022.*
 import com.example.sunlinhackathon2022.databinding.ActivityProductDetailsBinding
+import com.example.sunlinhackathon2022.fragment.illustratedbook.DictData
 import com.example.sunlinhackathon2022.fragment.illustratedbook.ResultData
 
 import com.example.sunlinhackathon2022.fragment.shop.purchase.Barcode
@@ -130,6 +131,25 @@ class ProductDetailsActivity : AppCompatActivity() {
                 response: Response<ResultData>
             ) {
                 if(response.isSuccessful) {
+                    val call2 = RetrofitClass.getApiService().getDictList(token)
+                    call2.enqueue(object : Callback<DictData> {
+                        override fun onResponse(
+                            call: Call<DictData>,
+                            response: Response<DictData>
+                        ) {
+                            val sf = getSharedPreferences("account",0)
+                            val edit = sf.edit()
+                            edit.putString("test",response.body()!!.dict.toString())
+                            edit.apply()
+                        }
+
+                        override fun onFailure(call: Call<DictData>, t: Throwable) {
+                        }
+
+                    })
+
+
+
                     startActivity(Intent(this@ProductDetailsActivity,MainActivity::class.java))
                     finish()
                 }else{

@@ -8,6 +8,7 @@ import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.sunlinhackathon2022.databinding.ActivityAnimalDetailBinding
 import com.example.sunlinhackathon2022.databinding.ActivityMyPageBinding
+import com.example.sunlinhackathon2022.fragment.illustratedbook.DictData
 import com.example.sunlinhackathon2022.fragment.illustratedbook.ResultData
 import retrofit2.Call
 import retrofit2.Callback
@@ -88,7 +89,22 @@ class AnimalDetailActivity : AppCompatActivity() {
                 response: Response<ResultData>
             ) {
                 if(response.isSuccessful) {
+                    val call2 = RetrofitClass.getApiService().getDictList(token)
+                    call2.enqueue(object : Callback<DictData> {
+                        override fun onResponse(
+                            call: Call<DictData>,
+                            response: Response<DictData>
+                        ) {
+                            val sf = getSharedPreferences("account",0)
+                            val edit = sf.edit()
+                            edit.putString("test",response.body()!!.dict.toString())
+                            edit.apply()
+                        }
 
+                        override fun onFailure(call: Call<DictData>, t: Throwable) {
+                        }
+
+                    })
                 }
             }
 
